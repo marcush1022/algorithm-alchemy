@@ -21,7 +21,7 @@ public:
 				{
 					if(nums[i]==sorted[left])
 						index.push_back(i);
-					else if (nums[i]=sorted[right])
+					else if (nums[i]==sorted[right])
 						index.push_back(i);
 					if(index.size()==2)
 						return index;
