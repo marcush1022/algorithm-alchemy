@@ -1,0 +1,43 @@
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+Note:
+You may assume that duplicates do not exist in the tree.
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+
+  
+        private:
+			TreeNode* DFS(vector<int> &inOrder, vector<int> &postOrder, int is, int ps, int length)
+			{
+				if(length<=0)
+					return 0;
+				TreeNode* ret= new TreeNode(postOrder[ps]);
+				for(int i=0;i<length;i++)
+				{
+					if(inOrder[is-i]==ret->val)
+					{
+					    ret->right=DFS(inOrder, postOrder,is, ps-1,  i);
+						ret->left=DFS(inOrder, postOrder, is-i-1,ps-i-1,  length-i-1);
+						
+						break;
+					}
+				}
+				
+				return ret;
+			}
+		
+		public:
+			TreeNode* buildTree(vector<int>& inOrder, vector<int>& postOrder)
+			{
+				return DFS(inOrder, postOrder, inOrder.size()-1 ,postOrder.size()-1, inOrder.size());
+			}
+    };
