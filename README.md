@@ -1,1 +1,1 @@
-# LeetCode-C++/Python
+# LeetCode-C++
