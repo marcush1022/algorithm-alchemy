@@ -25,7 +25,7 @@ class Solution {
 				{
 					if(inOrder[is-i]==ret->val)
 					{
-					    ret->right=DFS(inOrder, postOrder,is, ps-1,  i);
+					    	ret->right=DFS(inOrder, postOrder,is, ps-1,  i);
 						ret->left=DFS(inOrder, postOrder, is-i-1,ps-i-1,  length-i-1);
 						
 						break;
@@ -35,7 +35,7 @@ class Solution {
 				return ret;
 			}
 		
-		public:
+	public:
 			TreeNode* buildTree(vector<int>& inOrder, vector<int>& postOrder)
 			{
 				return DFS(inOrder, postOrder, inOrder.size()-1 ,postOrder.size()-1, inOrder.size());
