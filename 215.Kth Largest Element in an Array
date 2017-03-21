@@ -14,8 +14,8 @@ public:
 	int doPartition(vector<int> &nums, int left, int right)
 	{
 		int key = nums[left];
-        int low = left;
-        int high = right;
+        	int low = left;
+        	int high = right;
 		while(low<high)
 		{
 			while(low<high && nums[high]>=key)
@@ -39,16 +39,16 @@ public:
 		}
 
 	}
-    int findKthLargest(vector<int>& nums, int k) {
-        if(k==0 || k>nums.size())
-            return -1;
-        quickSort(nums, 0, nums.size()-1);
-        cout<<"AFTER: "<<endl;
-        for(int i=0;i<nums.size();i++)
-            cout<<nums[i]<<",";
-        cout<<endl;
+    	int findKthLargest(vector<int>& nums, int k) {
+        	if(k==0 || k>nums.size())
+            		return -1;
+        	quickSort(nums, 0, nums.size()-1);
+        	cout<<"AFTER: "<<endl;
+        	for(int i=0;i<nums.size();i++)
+            		cout<<nums[i]<<",";
+        	cout<<endl;
 		return nums[nums.size()-k];
-    }
+    	}
 };
 
 int main()
