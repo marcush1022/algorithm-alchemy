@@ -1,8 +1,8 @@
 class Solution {  
 public:  
-    int partition(vector<int>& nums, int left, int right)  
-    {  
-        int val=nums[right];
+    	int partition(vector<int>& nums, int left, int right)  
+    	{  
+        	int val=nums[right];
 		for(int i=left; i<right; i++)
 		{
 			if(nums[i]<val)
@@ -10,9 +10,9 @@ public:
 		}
 		swap(nums[left], nums[right]);
 		return left;
-    }  
+    	}  
       
-    int findKthLargest(vector<int>& nums, int k) 
+    	int findKthLargest(vector<int>& nums, int k) 
 	{  
 		int len=nums.size();
 		int pos=len-k, ans;
