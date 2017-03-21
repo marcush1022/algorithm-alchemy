@@ -25,19 +25,18 @@ public:
         if(root==NULL)
             return true;
         vector<int> list;
-		    inorderTraversal(root, list);
-		    cout<<list.size();
-		    for(int i=0; i<list.size()-1; i++)
-		    {
-			      if(list[i+1]<=list[i])
-				        return false;
-		    }
-		    return true;
+	inorderTraversal(root, list);
+	cout<<list.size();
+	for(int i=0; i<list.size()-1; i++)
+	{
+		if(list[i+1]<=list[i])
+			return false;
+	}
+	return true;
     }
 	
-  
-	  void inorderTraversal(TreeNode* cur, vector<int> &list) //missed a & before list
-	  {
+  	void inorderTraversal(TreeNode* cur, vector<int> &list) //missed a & before list
+	{
 		    if(cur==NULL)
 			      return ;
 		    if(cur->left!=NULL)
