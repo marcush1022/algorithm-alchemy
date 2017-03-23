@@ -7,43 +7,43 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         int len=nums.size();
-		int tar=0;
-		int sum=0;
-		vector<vector<int>> ret;
-		 if(nums.size()==0)
+	int tar=0;
+	int sum=0;
+	vector<vector<int>> ret;
+	if(nums.size()==0)
             return ret;
 		
-		sort(nums.begin(),nums.end());
+	sort(nums.begin(),nums.end());
 		
-		for(int i=0; i<len-2; i++)
+	for(int i=0; i<len-2; i++)
+	{
+	    int left=i+1;
+	    int right=len-1;
+			
+	    while(left<right)
+	    {
+		sum=nums[left]+nums[right]+nums[i];
+		if(sum<tar)
+		    left++;
+		else if(sum>tar)
+		    right--;
+		else
 		{
-			int left=i+1;
-			int right=len-1;
-			
-			while(left<right)
-			{
-				sum=nums[left]+nums[right]+nums[i];
-				if(sum<tar)
-					left++;
-				else if(sum>tar)
-					right--;
-				else
-				{
-					ret.push_back({nums[i], nums[left], nums[right]});
-					left++;
-					right--;
+		    ret.push_back({nums[i], nums[left], nums[right]});
+		    left++;
+		    right--;
 					
-					while(left<right && nums[right]==nums[right+1])
-						right--;
-					while(left<right && nums[left]==nums[left-1])
-						left++;
-				}
-			}
-			
-			while(i<len-2 && nums[i]==nums[i+1])
-				i++;
+		    while(left<right && nums[right]==nums[right+1])
+			right--;
+		    while(left<right && nums[left]==nums[left-1])
+			left++;
 		}
+	     }
+			
+	     while(i<len-2 && nums[i]==nums[i+1])
+		   i++;
+	}
 		
-		return ret;
+	return ret;
     }
 };
