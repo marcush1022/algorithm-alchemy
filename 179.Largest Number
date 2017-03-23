@@ -1,0 +1,54 @@
+/**********************************************************************************/
+Given a list of non negative integers, arrange them such that they form the largest number.
+
+For example, given [3, 30, 34, 5, 9], the largest formed number is 9534330.
+
+Note: The result may be very large, so you need to return a string instead of an integer.
+/**********************************************************************************/
+
+class Solution {
+public:
+	bool isBigger(int num1, int num2)
+	{
+		string n1=to_string(num1);
+		string n2=to_string(num2);
+		
+		return (n1+n2) > (n2+n1);
+	}
+
+	int doPartition(vector<int> &nums, int left, int right)
+	{
+		int val=nums[right];
+		for(int i=left; i<right; i++)
+		{
+			if(isBigger(nums[i], val))
+				swap(nums[left++], nums[i]);
+		}
+		swap(nums[left], nums[right]);
+		return left;
+	}
+
+	void quickSort(vector<int> &nums, int left, int right)
+	{
+		if(left<right)
+		{
+			int pos=doPartition(nums, left, right);
+			quickSort(nums, left, pos-1);
+			quickSort(nums, pos+1, right);
+		}
+	}
+
+    string largestNumber(vector<int>& nums)
+	{
+	    if(nums.size()==0)
+	        return "";
+		string str;
+		quickSort(nums, 0, nums.size()-1);
+		for(int i=0; i<nums.size(); i++)
+		    str+=to_string(nums[i]);
+		if(nums[0]==0)
+		    return "0";
+		else
+		    return str;
+    }
+};
