@@ -20,12 +20,12 @@ public:
 			
 	}
 	
-    int nthUglyNumber(int index) {
+    	int nthUglyNumber(int index) {
 		
 		if(index<=0)
 			return 0;
 		
-        int *uglyNumber=new int[index];
+        	int *uglyNumber=new int[index];
 		uglyNumber[0]=1;
 		int nextIndex=1;
 		
