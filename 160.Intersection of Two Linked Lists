@@ -34,13 +34,13 @@ public:
 		}
 		return len;
 	}
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(headA==NULL)
-            return headA;
-        if(headB==NULL)
-            return headB;
+    	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        	if(headA==NULL)
+            		return headA;
+        	if(headB==NULL)
+            		return headB;
         
-        int len1=getLen(headA);
+        	int len1=getLen(headA);
 		int len2=getLen(headB);
 		
 		int lenDiff=len1-len2;
