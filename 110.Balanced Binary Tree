@@ -18,8 +18,8 @@ public:
 		return (nLeft>nRight) ? (nLeft+1) : (nRight+1);
 	}
 
-    bool isBalanced(TreeNode* root) {
-        if(root==NULL)
+    	bool isBalanced(TreeNode* root) {
+        	if(root==NULL)
 			return true;
 		int nLeft=getTreeDepth(root->left);
 		int nRight=getTreeDepth(root->right);
