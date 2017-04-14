@@ -1,0 +1,64 @@
+/************************************************************************************/
+Given a string S and a string T, find the minimum window in S which will contain all
+the characters in T in complexity O(n).
+
+For example,
+S = "ADOBECODEBANC"
+T = "ABC"
+Minimum window is "BANC".
+
+Note:
+If there is no such window in S that covers all characters in T, return the empty string "".
+
+If there are multiple such windows, you are guaranteed that there will always be 
+only one unique minimum window in S.
+/************************************************************************************/
+
+class Solution
+{
+	public:
+	string minWindow(string s, string t)
+	{
+	    int len=s.length();
+		int charNum[128]={0};
+		bool isExist[128]={false};
+		
+		int right=0, left=0, count=0, minLeft=0;
+		int minLen=s.length()+1;
+		
+		for(int i=0; i<t.length(); i++)
+		{
+			isExist[t[i]]=true;
+			charNum[t[i]]++;
+		}
+		
+		for(right=0; right<len; right++)
+		{
+			if(isExist[s[right]] == true)
+			{
+				if(--charNum[s[right]]>=0)  //no more duplicate
+					count++;
+					
+				while(count == t.length())
+				{
+					if(right-left+1 < minLen)
+					{
+						minLen=right-left+1;
+						minLeft=left;
+					}
+				
+					if(isExist[s[left]])
+						if(++charNum[s[left]] > 0) //at least one left
+							count--;
+					left++;
+				}//while
+			 }//if
+				
+		}
+		
+		if(minLen>len)
+		    return "";
+		
+		return s.substr(minLeft, minLen);
+	}
+};
