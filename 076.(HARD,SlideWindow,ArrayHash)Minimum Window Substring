@@ -51,7 +51,7 @@ class Solution
 		{
 			if(isExist[s[right]] == true)
 			{
-				if(--charNum[s[right]]>=0)  //no more duplicate
+				if(--charNum[s[right]]>=0) 
 					count++;
 					
 				while(count == t.length())
@@ -63,7 +63,7 @@ class Solution
 					}
 				
 					if(isExist[s[left]])
-						if(++charNum[s[left]] > 0) //at least one left
+						if(++charNum[s[left]] > 0)
 							count--;
 					left++;
 				}//while
