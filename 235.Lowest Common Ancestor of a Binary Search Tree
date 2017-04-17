@@ -19,7 +19,7 @@ Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant o
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(root==NULL)
+        	if(root==NULL)
 			return NULL;
 		if(p==NULL)
 			return p;
