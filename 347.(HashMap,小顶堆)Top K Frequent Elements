@@ -7,6 +7,16 @@ Given [1,1,1,2,2,3] and k = 2, return [1,2].
 Note: 
 You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
 Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+
+这里可以用小根堆取代大根堆，在堆元素超过K时，删除堆顶元素，因为它不可能是数量最多的K个元素之一，
+遍历完所有数组元素之后堆中剩下的K个元素即是所求结果。优化后时间复杂度为O(nlogK)
+
+优先队列priority_queue, 数据越小，优先级越高:
+priority_queue<int, vector<int>, greater<int> >pq; 
+其中
+第二个参数为容器类型。
+第二个参数为比较函数。
+故示例2中输出结果为：2 3 4 5 6
 /**********************************************************************************************/
 
 class Solution
