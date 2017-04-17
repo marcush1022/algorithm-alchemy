@@ -1,10 +1,10 @@
 class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        int i=0, mid, left, right;
+	public:
+    	int search(vector<int>& nums, int target) {
+        	int i=0, mid, left, right;
 		int flag=0, index=-1;
 		if(nums.size()==0)
-            return -1;
+            		return -1;
 		int length=nums.size();
 		while(nums[i+1]>nums[i])
 		{
@@ -13,7 +13,7 @@ public:
 			i++;
 		}
 
-        cout<<"i="<<i<<endl;
+        	cout<<"i="<<i<<endl;
 		left=0;
 		right=i;
 		while(left<=right)
