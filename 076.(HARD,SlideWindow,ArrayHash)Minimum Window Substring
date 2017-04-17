@@ -51,7 +51,7 @@ class Solution
 		{
 			if(isExist[s[right]] == true)
 			{
-				if(--charNum[s[right]]>=0) 
+				if(--charNum[s[right]]>=0) //字符的数量还没到到needToFound需要的数量
 					count++;
 					
 				while(count == t.length())
@@ -63,7 +63,7 @@ class Solution
 					}
 				
 					if(isExist[s[left]])
-						if(++charNum[s[left]] > 0)
+						if(++charNum[s[left]] > 0)   //如果字符在当前窗口中的数量超过了needToFound需要的数量
 							count--;
 					left++;
 				}//while
