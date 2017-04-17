@@ -7,6 +7,14 @@ Given [1,1,1,2,2,3] and k = 2, return [1,2].
 Note: 
 You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
 Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+
+示例：将元素5，3，2，4，6依次push到优先队列中，print其输出。
+
+1.标准库默认使用元素类型的<操作符来确定它们之间的优先级关系。
+
+priority_queue<int> pq;
+通过<操作符可知在整数中元素大的优先级高。
+故示例1中输出结果为： 6 5 4 3 2
 /***************************************************************************************************/
 
 class Solution
