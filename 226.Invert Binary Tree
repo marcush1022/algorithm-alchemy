@@ -25,8 +25,9 @@ to
  */
 class Solution {
 public:
-    void getInvertTree(TreeNode* root) {
-        if(root==NULL)
+    void getInvertTree(TreeNode* root) 
+    {
+        	if(root==NULL)
 			return ;
 		if(root->left==NULL && root->right==NULL)
 			return ;
