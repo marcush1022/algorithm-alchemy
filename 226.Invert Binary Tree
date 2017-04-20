@@ -36,9 +36,9 @@ public:
 		root->right=temp;
 		
 		if(root->left)
-			invertTree(root->left);
+			getInvertTree(root->left);
 		if(root->right)
-			invertTree(root->right);
+			getInvertTree(root->right);
     }
     TreeNode* invertTree(TreeNode* root) {
        getInvertTree(root);
