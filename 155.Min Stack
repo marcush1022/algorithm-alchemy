@@ -17,40 +17,36 @@ minStack.getMin();   --> Returns -2.
 /************************************************************************************************/
 
 class MinStack {
-public:
-    /** initialize your data structure here. */
+	public:
+    	/** initialize your data structure here. */
 	
-    stack<int> minStk;
+    	stack<int> minStk;
 	stack<int> dataStk;
     
-    void push(int x) {
-        dataStk.push(x);
+    	void push(int x) 
+	{
+        	dataStk.push(x);
 		if(minStk.size()==0 || minStk.top()>x)
 			minStk.push(x);
 		else
 			minStk.push(minStk.top());
 		
-    }
+    	}
     
-    void pop() {
-        dataStk.pop();
+    	void pop() 
+	{
+        	dataStk.pop();
 		minStk.pop();
-    }
+    	}
     
-    int top() {
-        return dataStk.top();
-    }
+    	int top() 
+	{
+        	return dataStk.top();
+    	}
     
-    int getMin() {
-        return minStk.top();
-    }
+    	int getMin() 
+	{
+        	return minStk.top();
+    	}
 };
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack obj = new MinStack();
- * obj.push(x);
- * obj.pop();
- * int param_3 = obj.top();
- * int param_4 = obj.getMin();
- */
