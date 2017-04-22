@@ -16,7 +16,7 @@ the linked list should become 1 -> 2 -> 4 after calling your function.
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        if(!node)
+        	if(!node)
 			return;
 		ListNode *nNext=node->next;
 		node->val=nNext->val;
