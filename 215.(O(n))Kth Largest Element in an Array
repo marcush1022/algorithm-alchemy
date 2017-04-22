@@ -1,4 +1,13 @@
 /******************************************************************************************************/
+Find the kth largest element in an unsorted array. 
+Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+For example,
+Given [3,2,1,5,6,4] and k = 2, return 5.
+
+Note: 
+You may assume k is always valid, 1 ≤ k ≤ array's length.
+
 思路：这题是利用了quick-select的算法，也就是快速排序的partition，这个方法的理论时间复杂度是O(n)，是一种非常有用的工具．
 
 使用分治每次将数组划分为两段，并且返回划分点的位置，如果这个位置恰好是我们要的第k大的数，那么返回这个数即可，
