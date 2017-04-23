@@ -14,26 +14,26 @@ public:
 		}
 	}
     
-    // Push element x to the back of queue.
-    void push(int x) {
-        stk1.push(x);
-    }
+    	// Push element x to the back of queue.
+    	void push(int x) {
+        	stk1.push(x);
+    	}
     
-    // Removes the element from in front of queue.
-    void pop() {
-        reverseStk();
+    	// Removes the element from in front of queue.
+    	void pop() {
+        	reverseStk();
 		stk2.pop();
-    }
+    	}
 
-    // Get the front element.
-    int peek() {
-        reverseStk();
+    	// Get the front element.
+    	int peek() {
+        	reverseStk();
 		return stk2.top();
-    }
+    	}
 
-    // Return whether the queue is empty.
-    bool empty() {
-        reverseStk();
-        return (stk2.size()==0);
-    }
+    	// Return whether the queue is empty.
+    	bool empty() {
+        	reverseStk();
+        	return (stk2.size()==0);
+    	}
 };
