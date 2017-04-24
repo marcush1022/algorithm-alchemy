@@ -31,11 +31,11 @@ class Solution {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode* root)
     {
-		vector<vector<int>> ret;
+            vector<vector<int>> ret;
 	    if(root==NULL)
-	        return ret ;
+		return ret ;
 	        
-        int level=0;
+            int level=0;
 	    int count=1;
 	    vector<int> tmp;
 	  
@@ -68,7 +68,7 @@ public:
 			ret.push_back(tmp);
 	    }
 		
-		reverse(ret.begin(), ret.end());
+	    reverse(ret.begin(), ret.end());
 	    return ret;
     }
 };
