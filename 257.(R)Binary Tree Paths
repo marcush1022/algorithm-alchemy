@@ -1,0 +1,54 @@
+/**************************************************************************************/
+Given a binary tree, return all root-to-leaf paths.
+
+For example, given the following binary tree:
+
+   1
+ /   \
+2     3
+ \
+  5
+All root-to-leaf paths are:
+
+["1->2->5", "1->3"]
+/**************************************************************************************/
+
+I:
+class Solution {
+public:
+
+    string getString(vector<int> path) {
+        if (path.empty()) 
+            return "";
+        string ret;
+        for (int i = 0; i < path.size() - 1; ++i)
+            ret += to_string(path[i]) + "->";
+        ret += to_string(path[path.size() - 1]);
+        return ret;
+    }
+
+
+    void getBinaryTreePaths(TreeNode* root, vector<string> &ret, vector<int> &path) {
+        if(root==NULL)
+            return ;
+        path.push_back(root->val);
+        if(root->left==NULL && root->right==NULL)
+            ret.push_back(getString(path));
+        if(root->left)
+            getBinaryTreePaths(root->left, ret, path);
+        if(root->right)
+            getBinaryTreePaths(root->right, ret, path);
+        path.pop_back();
+    }
+    
+    vector<string> binaryTreePaths(TreeNode *root)
+    {    
+        vector<string> ret;
+        vector<int> path;
+        
+        getBinaryTreePaths(root, ret, path);
+        
+        return ret;
+    }
+        
+};
