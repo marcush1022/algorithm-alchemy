@@ -9,7 +9,7 @@ is the height of the tree.
 /****************************************************************************************/
 
 class BSTIterator {
-private:
+	private:
 
 	queue<int> path;
 	
@@ -23,25 +23,25 @@ private:
 		if(root->right)
 			inorderTree(root->right);
 	}
-public:
-    BSTIterator(TreeNode *root) {
-        inorderTree(root);
-    }
+	public:
+    	BSTIterator(TreeNode *root) {
+        	inorderTree(root);
+    	}
 
 	
-    /** @return whether we have a next smallest number */
-    bool hasNext() {
-        return (!path.empty());
-    }
+    	/** @return whether we have a next smallest number */
+    	bool hasNext() {
+        	return (!path.empty());
+    	}
 
-    /** @return the next smallest number */
-    int next() {
+    	/** @return the next smallest number */
+    	int next() {
 		int ret=0;
 		if(!path.empty())
 		{
 			ret=path.front();
 			path.pop();
 		}
-        return ret;
-    }
+        	return ret;
+    	}
 };
