@@ -1,0 +1,64 @@
+/************************************************************************/
+Given a linked list, return the node where the cycle begins. If there is 
+no cycle, return null.
+
+Note: Do not modify the linked list.
+
+Follow up:
+Can you solve it without using extra space?
+/************************************************************************/
+
+class Solution
+{
+public:
+ListNode* getMeetNode(ListNode *head)
+{
+	if(head==NULL)
+		return head;
+	ListNode *fast, *slow;
+	slow=head->next;
+	if(slow==NULL)
+        return NULL;
+    fast=slow->next;
+
+	while(fast!=NULL && slow!=NULL)
+	{
+		if(fast==slow)
+			return fast;
+		slow=slow->next;
+		fast=fast->next;
+		if(fast!=NULL)
+			fast=fast->next;
+	}
+
+	return NULL;
+}
+
+ListNode* detectCycle(ListNode *head)
+	{
+		ListNode *meetNode=getMeetNode(head);
+		if(meetNode==NULL)
+			return meetNode;
+		ListNode *loopNode=meetNode;
+		int count=1;
+
+		while(loopNode->next!=meetNode)
+		{
+			loopNode=loopNode->next;
+			count++;
+		}
+
+		loopNode=head;
+		for(int i=0; i<count; i++)
+			loopNode=loopNode->next;
+
+		ListNode *node=head;
+		while(node!=loopNode)
+		{
+			node=node->next;
+			loopNode=loopNode->next;
+		}
+
+		return loopNode;
+	}
+};
