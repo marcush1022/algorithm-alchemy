@@ -34,7 +34,7 @@ public:
 	}
 
     	int myAtoi(string str) {
-        int len=str.length();
+        	int len=str.length();
 		int sign=true;
 		int sum=0;
 
@@ -65,7 +65,7 @@ public:
 			return sum;
 		else
 			return -1*sum;
-    }
+    	}
 };
 
 int main()
