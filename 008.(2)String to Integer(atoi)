@@ -33,7 +33,7 @@ public:
 		return nega;
 	}
 
-    int myAtoi(string str) {
+    	int myAtoi(string str) {
         int len=str.length();
 		int sign=true;
 		int sum=0;
@@ -60,7 +60,7 @@ public:
 			i++;
 		}
 
-        cout<<"sign= "<<sign<<endl;
+        	cout<<"sign= "<<sign<<endl;
 		if(sign)
 			return sum;
 		else
