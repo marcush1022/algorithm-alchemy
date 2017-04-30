@@ -23,7 +23,7 @@ public:
 		return len;
 	}
 	
-    ListNode* rotateRight(ListNode* head, int k) {
+    	ListNode* rotateRight(ListNode* head, int k) {
 		
 		int len=getLength(head);
 		if(len==0 || k==0 ||len==1)
