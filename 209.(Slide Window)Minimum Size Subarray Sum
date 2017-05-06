@@ -18,30 +18,28 @@ s。注意，期间一旦sum >= s时，求最小的
 元素数。
 /***********************************************************************************/
 
-class Solution
-{
-	public:
-	int minSubArrayLen(int s, vector<int>& nums)
-	{
-		int len=nums.size();
-		if(len==0)
-			return 0;
-		
-		int left=0, right=0;
-		int min=INT_MAX;
-		int sum=0;
-		
-		while(left<len && right<len)
-		{
-			while(sum<s && right<len)
-				sum+=nums[right++];
-			while(sum>=s && left<=right)
-			{
-				min=std::min(min, right-left);
-				sum-=nums[left++];
-			}
-		}
-		
-		return (min==INT_MAX)? 0 :min;
-	}		
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int len=nums.size();
+        if(len==0)
+            return 0;
+        int left=0, right=0;
+        int minLen=len+1, sum=0;
+        
+        while(left<len && right<len)
+        {
+            while(sum<s && right<len)
+                sum+=nums[right++];
+            while(sum>=s && left<=right)
+            {
+                minLen=min(minLen, right-left);
+                sum-=nums[left++];
+            }
+        }
+        if(minLen==len+1)
+            return 0;
+        else
+            return minLen;
+    }
 };
