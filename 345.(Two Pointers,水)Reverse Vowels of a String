@@ -1,0 +1,92 @@
+/***************************************************************************************/
+Write a function that takes a string as input and reverse only the vowels of a string.
+
+Example 1:
+Given s = "hello", return "holle".
+
+Example 2:
+Given s = "leetcode", return "leotcede".
+
+Note:
+The vowels does not include the letter "y".
+
+I. Slightly faster(why?): 
+/***************************************************************************************/
+
+class Solution {
+public:
+    bool isVowels(char c)
+    {
+        switch(c)
+        {
+            case 'a':
+                return true;
+            case 'e':
+                return true;
+            case 'i':
+                return true;
+            case 'o':
+                return true;
+            case 'u':
+                return true;
+            case 'A':
+                return true;
+            case 'E':
+                return true;
+            case 'I':
+                return true;
+            case 'O':
+                return true;
+            case 'U':
+                return true;
+        }
+        return false;
+    }
+    
+    string reverseVowels(string s) {
+        int len=s.length();
+        if(len==0 || len==1)
+            return s;
+        int left=0, right=len-1;
+        while(left<right) 
+        {
+            while(!isVowels(s[left]) && left<right)
+                left++;
+            while(!isVowels(s[right]) && left<right)
+                right--;
+            if(isVowels(s[right]) && isVowels(s[left]))
+            {
+                std::swap(s[left], s[right]);
+                left++;
+                right--;
+            }
+        }
+        return s;
+    }
+};
+
+II. Another:
+/***************************************************************************************/
+string reverseVowels(string s) {
+        int len=s.length();
+        if(len==0 || len==1)
+            return s;
+        int left=0, right=len-1;
+        while(left<right)
+        {
+            if(!isVowels(s[left]))
+            {
+                left++;
+                continue;
+            }
+            if(!isVowels(s[right]))
+            {   
+                right--;
+                continue;
+            }
+            std::swap(s[left], s[right]);
+            left++;
+            right--;
+        }
+        return s;
+    }
