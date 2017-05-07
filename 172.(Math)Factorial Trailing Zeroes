@@ -1,0 +1,21 @@
+/*****************************************************************************************/
+Given an integer n, return the number of trailing zeroes in n!.
+
+Note: Your solution should be in logarithmic time complexity.
+
+对n!做质因数分解n!=2x*3y*5z*...
+显然0的个数等于2*5的个数即min(x,z)，并且min(x,z)=z (归纳法证明)
+/*****************************************************************************************/
+
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        int ret=0;
+        while(n)
+        {
+            ret+=n/5;
+            n=n/5;
+        }
+        return ret;
+    }
+};
