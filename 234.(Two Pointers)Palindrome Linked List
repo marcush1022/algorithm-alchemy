@@ -1,0 +1,62 @@
+/******************************************************************************************/
+Given a singly linked list, determine if it is a palindrome.
+
+Follow up:
+Could you do it in O(n) time and O(1) space?
+/******************************************************************************************/
+
+class Solution {
+public:
+	ListNode* doReverse(ListNode *head)
+	{
+		if(head==NULL || head->next==NULL)
+			return head;
+		ListNode *pre, *p, *pNext;
+		pre=head;
+		p=head->next;
+		head->next=NULL;
+		while(p)
+		{
+			pNext=p->next;
+			p->next=pre;
+			pre=p;
+			p=pNext;
+		}
+		return pre;
+	}
+
+    bool isPalindrome(ListNode* head) {
+		if(head==NULL || head->next==NULL)
+			return true;
+		int length=0, mid=0;
+		ListNode *left, *right, *mhead;
+		left=head;
+		right=head;
+
+		while(right!=NULL)
+		{
+			right=right->next;
+			length++;
+		}
+
+		mid=length/2;
+		while(--mid)
+		{
+			left=left->next;
+		}
+
+		mhead=left->next;
+		left->next=NULL;
+
+		right=doReverse(mhead);
+
+		while(head!=NULL && right!=NULL)
+		{
+			if(head->val!=right->val)
+				return false;
+            head=head->next;
+            right=right->next;
+		}
+		return true;
+    }
+};
