@@ -1,0 +1,76 @@
+/*************************************************************************************/
+Given two non-negative integers num1 and num2 represented as string, return the sum of
+num1 and num2.
+
+Note:
+
+The length of both num1 and num2 is < 5100.
+Both num1 and num2 contains only digits 0-9.
+Both num1 and num2 does not contain any leading zero.
+
+I. Slower
+/*************************************************************************************/
+
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int len1=num1.length();
+		int len2=num2.length();
+		int sum=0, carry=0;
+		string ret="";
+		if(len1==0 && len2==0)
+		    return "0";
+		
+		reverse(num1.begin(), num1.end());
+		reverse(num2.begin(), num2.end());
+		
+		for(int i=0; i<len1 || i<len2; i++)
+		{
+			if(i>len1-1)
+				num1+='0';
+			if(i>len2-1)
+				num2+='0';
+			sum=num1[i]-'0'+num2[i]-'0'+carry;
+			ret+=sum%10+'0';
+			carry=sum/10;
+		}
+		if(carry)
+		    ret+='1';
+		reverse(ret.begin(), ret.end());
+		
+		return ret;
+    }
+};
+
+II. Faster:
+/*************************************************************************************/
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int len1=num1.length();
+		int len2=num2.length();
+		int sum=0, carry=0;
+		string ret="";
+		if(len1==0 && len2==0)
+		    return "0";
+		
+		reverse(num1.begin(), num1.end());
+		reverse(num2.begin(), num2.end());
+		
+		for(int i=0; i<len1 || i<len2; i++)
+		{
+		    sum=0;
+			if(i<len1)
+				sum+=(num1[i]-'0');
+			if(i<len2)
+				sum+=(num2[i]-'0');
+			ret+=(sum+carry)%10+'0';
+			carry=(sum+carry)/10;
+		}
+		if(carry)
+		    ret+='1';
+		reverse(ret.begin(), ret.end());
+		
+		return ret;
+    }
+};
