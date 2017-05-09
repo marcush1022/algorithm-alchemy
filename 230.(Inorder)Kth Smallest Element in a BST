@@ -1,0 +1,70 @@
+/******************************************************************************************************/
+Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+
+Note: 
+You may assume k is always valid, 1 ? k ? BST's total elements.
+
+I. Faster:
+/******************************************************************************************************/
+
+class Solution {
+public:
+	void getInOrder(TreeNode *root, vector<int> &path, int k)
+	{
+		stack<TreeNode*> stk;
+		stk.push(root);
+		
+		while(root!=NULL || !stk.empty())
+		{
+			while(root!=NULL)
+			{
+				stk.push(root);
+				root=root->left;
+			}
+			if(!stk.empty())
+			{
+				root=stk.top();
+				path.push_back(root->val);
+				if(path.size()==k)
+					return ;
+				stk.pop();
+				root=root->right;
+			}
+		}
+	}
+	
+    int kthSmallest(TreeNode* root, int k) {
+        if(root==NULL)
+            return -1;
+        vector<int> path;
+        getInOrder(root, path, k);
+        return path.back();
+    }
+};
+
+II. Slower: 
+/******************************************************************************************************/
+class Solution {
+public:
+    void getInOrder(TreeNode *root, vector<int> &path)
+    {
+        if(root==NULL)
+            return ;
+        if(root->left)
+            getInOrder(root->left, path);
+        path.push_back(root->val);
+        if(root->right)
+            getInOrder(root->right, path);
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        if(root==NULL)
+            return -1;
+        vector<int> path;
+        getInOrder(root, path);
+        if(k<0 || k>path.size())
+            return -1;
+        else
+            return path[k-1];
+    }
+};
