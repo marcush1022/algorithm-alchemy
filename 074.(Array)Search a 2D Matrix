@@ -1,3 +1,4 @@
+/*******************************************************************************************************************/
 Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
 
 Integers in each row are sorted from left to right.
@@ -12,42 +13,29 @@ Consider the following matrix:
   [23, 30, 34, 50]
 ]
 Given target = 3, return true.
-
+/*******************************************************************************************************************/
 
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int row, col;
-        
-        if (matrix.empty() || matrix[0].empty())
-            return false;
-        
-		//get the number of rows and cols
-		row=matrix.size();
-		col=matrix[0].size();
+        if(matrix.empty() || matrix[0].empty())
+			return false;
+		int rows, cols;
+		rows=matrix.size();
+		cols=matrix[0].size();
 		
-		//find or not
-        int flag=0;
-        
-		int i,j;
-		i=0;
-		j=col-1;
+		int i=0, j=cols-1;
+		bool flag=false;
 		
-		while(j>=0 && i<row)
+		while(i<rows && j>=0)
 		{
 			if(matrix[i][j]==target)
-			{
-				flag=1;
-				break;
-			}
-			else if(matrix[i][j]>target)
-				j--;
-			else
+				return true;
+			else if(matrix[i][j]<target)
 				i++;
+			else
+				j--;
 		}
-        if(flag)
-            return true;
-        else
-            return false;
+		return flag;
     }
 };
