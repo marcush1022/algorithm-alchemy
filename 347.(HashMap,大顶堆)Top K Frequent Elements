@@ -9,12 +9,10 @@ You may assume k is always valid, 1 ≤ k ≤ number of unique elements.
 Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 
 优先队列是队列的一种，不过它可以按照自定义的一种方式（数据的优先级）来对队列中的数据进行动态的排序
-
 每次的push和pop操作，队列都会动态的调整，以达到我们预期的方式来存储。
-
 例如：我们常用的操作就是对数据排序，优先队列默认的是数据大的优先级高
-
 所以我们无论按照什么顺序push一堆数，最终在队列里总是top出最大的元素。
+
 用法：
 示例：将元素5，3，2，4，6依次push到优先队列中，print其输出。
 
@@ -22,6 +20,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 
 priority_queue<int> pq;
 通过<操作符可知在整数中元素大的优先级高。
+
 故示例1中输出结果为： 6 5 4 3 2
 /***************************************************************************************************/
 
