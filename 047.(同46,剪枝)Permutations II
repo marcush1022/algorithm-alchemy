@@ -1,0 +1,42 @@
+/*************************************************************************************/
+Given a collection of numbers that might contain duplicates, return all possible unique
+permutations.
+
+For example,
+[1,1,2] have the following unique permutations:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+/*************************************************************************************/
+
+class Solution {
+public:
+	void getPermute(vector<int> nums, int index, vector<vector<int>> &ret)
+	{
+	    if(index==nums.size()-1)
+		{
+		    ret.push_back(nums);
+		    return ;
+		}
+
+		sort(nums.begin()+index, nums.end()); 
+		for(int i=index; i<nums.size(); i++)
+		{
+		    if(i!=index && nums[i]==nums[i-1])
+		        continue;
+			swap(nums[index], nums[i]);
+			getPermute(nums, index+1, ret);
+			swap(nums[index], nums[i]);
+		}
+	}
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> ret;
+		if(nums.size()==0)
+			return ret;
+		getPermute(nums, 0, ret);
+		return ret;
+    }
+};
