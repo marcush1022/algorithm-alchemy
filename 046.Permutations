@@ -34,11 +34,11 @@ public:
 		}
 	}
 
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> ret;
+    	vector<vector<int>> permute(vector<int>& nums) {
+        	vector<vector<int>> ret;
 		if(nums.size()==0)
 			return ret;
 		getPermute(nums, 0, ret);
 		return ret;
-    }
+    	}
 };
