@@ -24,6 +24,7 @@ Note:
 
 class Solution {
 public:
+I. 
 	void getCombine(int index, int n, int k, vector<int> &tmp, vector<vector<int>> &ret)
 	{
 		if(tmp.size()==k)
@@ -38,6 +39,23 @@ public:
 			tmp.push_back(i);
 			getCombine(i, n, k, tmp, ret);
 			tmp.pop_back();   //一次完成要弹出
+		}
+	}
+II. 	
+	void getCombine(int index, int n, int k, vector<int> &tmp, vector<vector<int>> &ret)
+	{
+		if(tmp.size()==k)
+		{
+			ret.push_back(tmp);
+			return ;
+		}
+		if(tmp.size()>1 && tmp.back()<*(tmp.end()-2))
+			return ;
+		for(int i=index; i<n+1; i++)
+		{
+			tmp.push_back(i);
+			getCombine(i+1, n, k, tmp, ret);
+			tmp.pop_back();
 		}
 	}
 	
