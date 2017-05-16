@@ -19,43 +19,26 @@ abc这个相对顺序不能改变，所以当b与c发生交换变成了acb之后
 
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) 
-	  {
-	    vector<vector<int>> ret;
-	    if(nums.size()==0)
-	        return ret;
-        
-		  int begin=0;
-		
-		  getPermute(nums, begin, ret);
-		  return ret;
-    }
+	void getPermute(vector<int> &nums, int index, vector<vector<int>> &ret)
+	{
+	    if(index==(nums.size()-1))
+		{
+		    ret.push_back(nums);
+		    return ;
+		}
+		for(int i=index; i<nums.size(); i++)
+		{
+			swap(nums[i], nums[index]);
+			getPermute(nums, index+1, ret);
+			swap(nums[i], nums[index]);
+		}
+	}
 
-    void getPermute(vector<int>& nums, int begin, vector<vector<int>>& ret) 
-	  {
-        
-		  if(begin<nums.size())
-		  {
-			  for(int i=begin;i<nums.size();i++)
-			  {
-				  int temp=nums[i];
-				  nums[i]=nums[begin];
-				  nums[begin]=temp;
-				
-				  getPermute(nums, begin+1, ret);
-				
-				  temp=nums[i];
-				  nums[i]=nums[begin];
-				  nums[begin]=temp;
-			  }
-		  }
-		  else
-		  {
-			  ret.push_back(nums);
-		  }
-		
-		
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ret;
+		if(nums.size()==0)
+			return ret;
+		getPermute(nums, 0, ret);
+		return ret;
     }
-	
-
 };
