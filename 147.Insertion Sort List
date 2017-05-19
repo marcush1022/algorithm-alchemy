@@ -17,23 +17,23 @@ public:
         head->next=NULL;
         while(p)
         {
-			pNext=p->next;
-			pre=head;
-            if(p->val<pre->val)
-			{
-				p->next=pre;
-				head=p;
-				p=pNext;
-			}
-			else
-			{
-				while(pre->next!=NULL && pre->next->val<p->val)  //attention
-					pre=pre->next;
-				p->next=pre->next;
-				pre->next=p;
-				p=pNext;
-			}
+		pNext=p->next;
+		pre=head;
+            	if(p->val<pre->val)
+		{
+			p->next=pre;
+			head=p;
+			p=pNext;
+		}
+		else
+		{
+			while(pre->next!=NULL && pre->next->val<p->val)  //attention
+				pre=pre->next;
+			p->next=pre->next;
+			pre->next=p;
+			p=pNext;
+		}
         }
-		return head;
+	return head;
     }
 };
