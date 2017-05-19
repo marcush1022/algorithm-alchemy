@@ -14,25 +14,33 @@ Given m, n satisfy the following condition:
 class Solution
 {
 	public:
-	ListNode* reverseBetween(ListNode* head, int m, int n)
+	ListNode *reverseBetween(ListNode *head, int m, int n)
 	{
 		if(head==NULL || head->next==NULL)
 			return head;
-		ListNode* mhead=new ListNode(0);
+		ListNode *mhead=new ListNode(0);
 		mhead->next=head;
+		
 		for(int i=0; i<m-1; i++)
 			mhead=mhead->next;
 		
-		ListNode* prev=mhead->next;
-		ListNode* cur=prev->next;
+		ListNode *pre=mhead->next;
+		ListNode *p=pre->next;
 		
 		for(int i=m; i<n; i++)
 		{
-			prev->next=cur->next;
-			cur->next=mhead->next;
-			mhead->next=cur;
-			cur=prev->next;
+			pre->next=p->next;
+			p->next=mhead->next;
+			mhead->next=p;
+			p=pre->next;
 		}
-		return m == 1 ? mhead->next : head;
+		
+		if(m==1)
+			return mhead->next;
+		else
+			return head;
 	}
 };
+
+
+
