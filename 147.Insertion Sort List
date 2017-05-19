@@ -8,31 +8,32 @@
  */
 class Solution {
 public:
-	
-	ListNode *insertionSortList(ListNode *head)
-	{
-		if(head==NULL || head->next==NULL)
-			return head;
-		ListNode *p=head->next;
-		head->next=NULL;
-		while(p!=NULL)
-		{
-			ListNode *q=head;
-			ListNode *pNext=p->next;
-			if(p->val<q->val)
+    ListNode* insertionSortList(ListNode* head) {
+        if(head==NULL || head->next==NULL)
+            return head;
+        ListNode *pre, *p, *pNext;
+        pre=head;
+        p=head->next;
+        head->next=NULL;
+        while(p)
+        {
+			pNext=p->next;
+			pre=head;
+            if(p->val<pre->val)
 			{
-				p->next=q;
+				p->next=pre;
 				head=p;
+				p=pNext;
 			}
 			else
 			{
-				while(q!=NULL && q->next!=NULL && q->next->val<=p->val)
-					q=q->next;
-				p->next=q->next;
-				q->next=p;
+				while(pre->next!=NULL && pre->next->val<p->val)  //attention
+					pre=pre->next;
+				p->next=pre->next;
+				pre->next=p;
+				p=pNext;
 			}
-			p=pNext;
-		}
+        }
 		return head;
-	}
+    }
 };
