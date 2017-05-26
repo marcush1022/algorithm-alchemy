@@ -1,0 +1,60 @@
+/*********************************************************************************************/
+Given an integer array with even length, where different numbers in this array represent 
+different kinds of candies. Each number means one candy of the corresponding kind. You need to 
+distribute these candies equally in number to brother and sister. Return the maximum number of 
+kinds of candies the sister could gain.
+
+Example 1:
+Input: candies = [1,1,2,2,3,3]
+Output: 3
+Explanation:
+There are three different kinds of candies (1, 2 and 3), and two candies for each kind.
+Optimal distribution: The sister has candies [1,2,3] and the brother has candies [1,2,3], too. 
+The sister has three different kinds of candies. 
+Example 2:
+Input: candies = [1,1,2,3]
+Output: 2
+Explanation: For example, the sister has candies [2,3] and the brother has candies [1,1]. 
+The sister has two different kinds of candies, the brother has only one kind of candies. 
+Note:
+
+The length of the given array is in range [2, 10,000], and will be even.
+The number in given array is in range [-100,000, 100,000].
+/*********************************************************************************************/
+I. 
+class Solution {
+public:
+    int distributeCandies(vector<int>& candies) {
+        int len=candies.size();
+        if(len==0)
+            return 0;
+		map<int, int> map;
+		for(int i=0; i<len; i++)
+			map[candies[i]]++;
+		int count=0;
+
+		for(auto it=map.begin(); it!=map.end(); it++)
+		{
+			if(it->second!=0)
+				count++;
+		}
+		return min(count, len/2);
+    }
+};
+
+II. beats 58.59 %
+class Solution {
+public:
+    int distributeCandies(vector<int>& candies) {
+        int len=candies.size();
+        if(len==0)
+            return 0;
+		vector<int> ret;
+		sort(candies.begin(), candies.end());
+		for(int i=0; i<len; i++)
+			if(ret.size()==0 || ret.back()!=candies[i])
+				ret.push_back(candies[i]);
+		int l=ret.size();
+		return min(l, len/2);
+    }
+};
