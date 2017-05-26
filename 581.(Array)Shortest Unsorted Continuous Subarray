@@ -26,16 +26,16 @@ public:
         
         sort(nums.begin(), nums.end());
         int left=0, right=len-1;
-		for(left=0; left<nums.size(); left++)
-			if(nums[left]!=tmp[left])
-				break;
-		for(right=len-1; right>=0; right--)
-			if(nums[right]!=tmp[right])
-				break;
-		if(left==len)
-			return 0;
-		else
-			return right-left+1;
+	for(left=0; left<nums.size(); left++)
+		if(nums[left]!=tmp[left])
+			break;
+	for(right=len-1; right>=0; right--)
+		if(nums[right]!=tmp[right])
+			break;
+	if(left==len)
+		return 0;
+	else
+		return right-left+1;
         
     }
 };
@@ -45,37 +45,37 @@ class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
         int len=nums.size();
-		if(len==0)
-			return 0;
-		int max=INT_MIN, min=INT_MAX;
-		bool flag=false;
+	if(len==0)
+		return 0;
+	int max=INT_MIN, min=INT_MAX;
+	bool flag=false;
         for(int i=1; i<nums.size(); i++)
+	{
+		if(nums[i]<nums[i-1])
 		{
-			if(nums[i]<nums[i-1])
-			{
-			    flag=true;
-				if(nums[i]<min)
-					min=nums[i];
-			}
+			flag=true;
+			if(nums[i]<min)
+				min=nums[i];
 		}
-		if(!flag)
+	}
+	if(!flag)
             return 0;
 
-		for(int i=len-2; i>=0; i--)
+	for(int i=len-2; i>=0; i--)
+	{
+		if(nums[i]>nums[i+1])
 		{
-			if(nums[i]>nums[i+1])
-			{
-				if(nums[i]>max)
-					max=nums[i];
-			}
+			if(nums[i]>max)
+				max=nums[i];
 		}
-		int left=0, right=len-1;
-		for(left; left<len; left++)
-			if(nums[left]>min)
-				break;
-		for(right; right>=0; right--)
-			if(nums[right]<max)
-				break;
-		return right-left+1;
+	}
+	int left=0, right=len-1;
+	for(left; left<len; left++)
+		if(nums[left]>min)
+			break;
+	for(right; right>=0; right--)
+		if(nums[right]<max)
+			break;
+	return right-left+1;
     }
 };
