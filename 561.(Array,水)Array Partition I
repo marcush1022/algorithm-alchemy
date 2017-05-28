@@ -11,6 +11,8 @@ Explanation: n is 2, and the maximum sum of pairs is 4.
 Note:
 n is a positive integer, which is in the range of [1, 10000].
 All the integers in the array will be in the range of [-10000, 10000].
+
+Note: 最大和即为 (a0+a2+a4+….+a(2n-2))
 /**********************************************************************************/
 
 class Solution {
