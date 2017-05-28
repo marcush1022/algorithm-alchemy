@@ -1,42 +1,31 @@
+/******************************************************************************************************/
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
 Note:
 You may assume that duplicates do not exist in the tree.
+/******************************************************************************************************/
 
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
-
-private:
-	TreeNode* DFS(vector<int> &preOrder, vector<int> &inOrder, int ps, int is, int length)
+public:
+    TreeNode* build(vector<int> &preorder, vector<int> &inorder, int preindex, int inindex, int length)
 	{
-		if(length<=0)
-			return NULL;
-		TreeNode *root=new TreeNode(preOrder[ps]);
-		for(int i=0;i<length;i++)
+	    if(length<1)
+	        return NULL;
+		TreeNode *root=new TreeNode(preorder[preindex]);
+		for(int i=0; i<length; i++)
 		{
-			if(inOrder[is+i]==root->val)
+			if(root->val==inorder[i+inindex])
 			{
-				root->left=DFS(preOrder, inOrder, ps+1, is, i);
-				root->right=DFS(preOrder, inOrder, ps+i+1, is+i+1, length-i-1);
+				root->left=build(preorder, inorder, preindex+1, inindex, i);
+				root->right=build(preorder, inorder, preindex+i+1, inindex+i+1, length-i-1);
 				break;
 			}
-		
-				
 		}
 		return root;
 	}
 
-public:
-    TreeNode* buildTree(vector<int>& preOrder, vector<int>& inOrder) {
-        return DFS(preOrder,inOrder,0,0,preOrder.size());
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+		return build(preorder, inorder, 0, 0, preorder.size());
+        
     }
 };
