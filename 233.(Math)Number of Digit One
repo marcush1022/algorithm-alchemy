@@ -31,14 +31,23 @@ Note: Thanks to @fyuanfen
 class Solution {
 public:
     int countDigitOne(int n) {
-        int count=0;
-        long high=0, low=0;
-        for(long i=1; i<=n; i*=10)
-        {
-            high=n/i;
-            low=n%i;
-            count+=(high+8)/10*i+(high%10==1)*(low+1);
-        }
-        return count;
+        long factor=1;
+		long cdigit, highN, lowN=0;
+		int count=0;
+		while(n/factor>0)
+		{
+			cdigit=(n%(factor*10))/factor;
+			highN=n/(factor*10);
+			if(cdigit==1)
+				count+=highN*factor+lowN+1;
+			if(cdigit==0)
+				count+=highN*factor;
+			if(cdigit>1)
+				count+=(highN+1)*factor;
+			
+			lowN=n%(factor*10);
+			factor*=10;
+		}
+		return count;
     }
 };
