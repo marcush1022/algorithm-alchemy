@@ -1,0 +1,46 @@
+/************************************************************************************/
+Given a string, you need to reverse the order of characters in each word within a 
+sentence while still preserving whitespace and initial word order.
+
+Example 1:
+Input: "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+Note: In the string, each word is separated by single space and there will not be any
+extra space in the string.
+/************************************************************************************/
+
+class Solution {
+public:
+	void doReverse(string &s, int left, int right)
+	{
+		while(left<right)
+		{
+			swap(s[left], s[right]);
+			left++;
+			right--;
+		}
+	}
+
+    string reverseWords(string s) {
+        int len=s.length();
+		if(len==0)
+			return s;
+		int left=0, right=0;
+		while(left<len)
+		{
+			if(s[left]==' ' && s[right]==' ')
+			{
+				left++;
+				right++;
+			}
+			else if(s[right]==' ' || s[right]=='\0')
+			{
+				doReverse(s, left, right-1);
+				left=right;
+			}
+			else
+				right++;
+		}
+		return s;
+    }
+};
