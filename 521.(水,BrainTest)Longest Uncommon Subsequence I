@@ -1,0 +1,76 @@
+/***********************************************************************************/
+Given a group of two strings, you need to find the longest uncommon subsequence of 
+this group of two strings. The longest uncommon subsequence is defined as the longest
+subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.
+
+A subsequence is a sequence that can be derived from one sequence by deleting some 
+characters without changing the order of the remaining elements. Trivially, any string
+is a subsequence of itself and an empty string is a subsequence of any string.
+
+The input will be two strings, and the output needs to be the length of the longest
+uncommon subsequence. If the longest uncommon subsequence doesn't exist, return -1.
+
+Example 1:
+Input: "aba", "cdc"
+Output: 3
+Explanation: The longest uncommon subsequence is "aba" (or "cdc"), 
+because "aba" is a subsequence of "aba", 
+but not a subsequence of any other strings in the group of two strings. 
+Note:
+
+Both strings' lengths will not exceed 100.
+Only letters from a ~ z will appear in input strings.
+
+Note: 难点在题目理解.......
+错误想法：
+1. 把a的元素存入map
+2. 求b中不在map中的连续元素个数
+
+题目翻译:
+给定一组两个的字符串，您需要找到这组两个字符串中最长的不常见的子序列。 最长的不常见的子序列
+被定义为这些字符串之一的最长子序列，并且该子序列不应该是其他字符串的任何子序列。 
+子序列是可以通过删除一些字符而不改变剩余元素的顺序从一个序列导出的序列。 Attention: 简而言
+之，任何字符串本身都是一个子序列，空字符串是任何字符串的子序列。 
+输入将是两个字符串，输出需要是最长的不常见子序列的长度。 如果最长不常见的子序列不存在，则返
+回-1。
+
+只需要判断两字符串是否相等，如果相等就返回-1，不相等就返回较长的字符串长度
+/***********************************************************************************/
+
+class Solution {
+public:
+    int findLUSlength(string a, string b) {
+        int len1=a.length();
+		int len2=b.length();
+		if(a==b)
+			return -1;
+		else
+			return (len1>len2)?len1:len2;
+    }
+};
+
+
+WRONG:
+int findLUSlength(string a, string b) {
+        int len1=a.length();
+		int len2=b.length();
+		if(len1==0 || len2==0)
+			return -1;
+		map<char, int> map;
+		int maxCount=0;
+
+		for(int i=0; i<len1; i++)
+			map[a[i]]++;
+
+		for(int i=0; i<len2; i++)
+		{
+			int count=0;
+			while(map.find(b[i])==map.end() && i<len2)
+			{
+				count++;
+				i++;
+			}
+			maxCount=max(maxCount, count);
+		}
+		return (maxCount==0)?-1:maxCount;
+    }
