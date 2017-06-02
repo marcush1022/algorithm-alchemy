@@ -18,29 +18,32 @@ class Solution
 	{
 		if(head==NULL || head->next==NULL)
 			return head;
-		ListNode *mhead=new ListNode(0);
-		mhead->next=head;
+		ListNode *nhead=new ListNode(0);
+		nhead->next=head;
 		
+		ListNode *pre=nhead, *p=nhead;
 		for(int i=0; i<m-1; i++)
-			mhead=mhead->next;
+			pre=pre->next;
 		
-		ListNode *pre=mhead->next;
-		ListNode *p=pre->next;
-		
+		p=pre->next;
+		ListNode *pNxt=p->next;
 		for(int i=m; i<n; i++)
 		{
-			pre->next=p->next;
-			p->next=mhead->next;
-			mhead->next=p;
-			p=pre->next;
+			p->next=pNxt->next;
+			pNxt->next=pre->next;
+			pre->next=pNxt;
+			pNxt=p->next;
 		}
 		
 		if(m==1)
-			return mhead->next;
+			return nhead->next;
 		else
 			return head;
 	}
 };
+
+
+
 
 
 
