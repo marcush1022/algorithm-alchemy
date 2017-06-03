@@ -10,55 +10,49 @@ Can you solve it without using extra space?
 
 class Solution
 {
-public:
-ListNode* getMeetNode(ListNode *head)
-{
-	if(head==NULL)
-		return head;
-	ListNode *fast, *slow;
-	slow=head->next;
-	if(slow==NULL)
-        return NULL;
-    fast=slow->next;
-
-	while(fast!=NULL && slow!=NULL)
+	public:
+	ListNode *getMeetNode(ListNode *head)
 	{
-		if(fast==slow)
-			return fast;
-		slow=slow->next;
-		fast=fast->next;
-		if(fast!=NULL)
-			fast=fast->next;
+		ListNode *slow=head, *fast=head;
+		while(slow!=NULL && fast!=NULL && fast->next!=NULL)
+		{
+			slow=slow->next;
+			fast=fast->next->next;
+			if(fast==slow)
+				return fast;
+		}
+		return NULL;
 	}
-
-	return NULL;
-}
-
-ListNode* detectCycle(ListNode *head)
+	
+	ListNode *detectCycle(ListNode *head)
 	{
-		ListNode *meetNode=getMeetNode(head);
-		if(meetNode==NULL)
-			return meetNode;
-		ListNode *loopNode=meetNode;
-		int count=1;
-
-		while(loopNode->next!=meetNode)
+		if(head==NULL)
+			return head;
+		ListNode *meet=getMeetNode(head);
+		if(meet==NULL)
+			return meet;
+		
+		int count=0;
+		ListNode *front=meet;
+		while(front->next!=meet)
 		{
-			loopNode=loopNode->next;
-			count++;
+			front=front->next;
+			++count;
 		}
-
-		loopNode=head;
+		
+		front=head;
+		ListNode *rear=head;
 		for(int i=0; i<count; i++)
-			loopNode=loopNode->next;
-
-		ListNode *node=head;
-		while(node!=loopNode)
 		{
-			node=node->next;
-			loopNode=loopNode->next;
+			rear=rear->next;
 		}
-
-		return loopNode;
+		
+		while(rear->next!=front)
+		{
+			rear=rear->next;
+			front=front->next;
+		}
+		
+		return front;
 	}
 };
