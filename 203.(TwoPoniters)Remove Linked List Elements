@@ -9,7 +9,7 @@ Return: 1 --> 2 --> 3 --> 4 --> 5
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if(head==NULL)
+        	if(head==NULL)
 			return head;
 		ListNode *pre=head, *p=head;
 		while(p!=NULL)
@@ -44,7 +44,7 @@ ERROR:
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if(head==NULL)
+        	if(head==NULL)
 			return head;
 		int headVal=head->val;
 		ListNode *nhead=new ListNode(0);
