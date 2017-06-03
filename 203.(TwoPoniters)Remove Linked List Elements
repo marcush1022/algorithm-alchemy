@@ -1,0 +1,71 @@
+/************************************************************************************/
+Remove all elements from a linked list of integers that have value val.
+
+Example
+Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
+Return: 1 --> 2 --> 3 --> 4 --> 5
+/************************************************************************************/
+
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if(head==NULL)
+			return head;
+		ListNode *pre=head, *p=head;
+		while(p!=NULL)
+		{
+			if(p->val==val)
+			{
+				if(p==head)
+				{
+					pre=head=p->next;
+					free(p);
+					p=p->next;
+				}
+				else
+				{
+					pre->next=p->next;
+					free(p);
+					p=p->next;
+				}
+			}
+			else
+			{
+				pre=p;
+				p=p->next;
+			}
+		}
+		return head;
+    }
+};
+
+ERROR: 
+/**********************************************************************************************/
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if(head==NULL)
+			return head;
+		int headVal=head->val;
+		ListNode *nhead=new ListNode(0);
+		nhead->next=head;
+		ListNode *p=nhead;
+		while(p!=NULL && p->next!=NULL)
+		{
+			ListNode *pNxt=p->next;
+			if(p->next->val==val)
+			{
+				p->next=pNxt->next;
+				pNxt->next=NULL;
+				delete pNxt;
+				pNxt=NULL;
+			}
+			p=p->next;
+		}
+		cout<<"1";
+		if(val==headVal)
+		    return nhead->next;
+		else
+		    return head;
+    }
+};
