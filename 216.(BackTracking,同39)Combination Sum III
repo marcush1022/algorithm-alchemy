@@ -43,8 +43,8 @@ public:
 		}
 	}
 	
-    vector<vector<int>> combinationSum3(int k, int n) {
-        vector<vector<int>> ret;
+    	vector<vector<int>> combinationSum3(int k, int n) {
+        	vector<vector<int>> ret;
 		if(k<0 || n<0)
 			return ret;
 		vector<int> tmp;
@@ -53,8 +53,8 @@ public:
     }
 };
 	
-    vector<vector<int>> combinationSum3(int k, int n) {
-        vector<vector<int>> ret;
+    	vector<vector<int>> combinationSum3(int k, int n) {
+        	vector<vector<int>> ret;
 		if(k<0 || n<0)
 			return ret;
 		vector<int> tmp;
