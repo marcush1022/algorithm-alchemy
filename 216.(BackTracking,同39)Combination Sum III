@@ -26,22 +26,32 @@ class Solution {
 public:
 	void getCombinationSum(int sum, int target, vector<int> &tmp, vector<vector<int>> &ret, int index, int k)
 	{
-		if(sum==target && k==0)
+		if(sum==target && tmp.size()==k)
 		{
 			ret.push_back(tmp);
 			return ;
 		}
-		if(sum>target || k<0)
+		if(sum>target || tmp.size()>k)
 			return ;
 		for(int i=index; i<10; i++)
 		{
 			sum+=i;
 			tmp.push_back(i);
-			getCombinationSum(sum, target, tmp, ret, i+1, k-1);
+			getCombinationSum(sum, target, tmp, ret, i+1, k);
 			tmp.pop_back();
 			sum-=i;
 		}
 	}
+	
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ret;
+		if(k<0 || n<0)
+			return ret;
+		vector<int> tmp;
+		getCombinationSum(0, n, tmp, ret, 1, k);
+		return ret;
+    }
+};
 	
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> ret;
