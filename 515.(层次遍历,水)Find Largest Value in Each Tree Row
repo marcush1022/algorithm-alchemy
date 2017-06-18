@@ -1,0 +1,62 @@
+/************************************************************************************/
+You need to find the largest value in each row of a binary tree.
+
+Example:
+Input: 
+
+          1
+         / \
+        3   2
+       / \   \  
+      5   3   9 
+
+Output: [1, 3, 9]
+/************************************************************************************/
+
+class Solution {
+public:
+	vector<int> getLevelMax(TreeNode *root)
+	{
+		queue<TreeNode*> que;
+		vector<int> res;
+		vector<int> tmp;
+		que.push(root);
+		
+		int level=0, count=1;
+		int maxNode=INT_MIN;
+		while(!que.empty())
+		{
+			level=0;
+			maxNode=INT_MIN;
+			tmp.clear();
+			for(int i=0; i<count; i++)
+			{
+				root=que.front();
+				que.pop();
+				maxNode=max(root->val, maxNode);
+				
+				if(root->left)
+				{
+					que.push(root->left);
+					level++;
+				}
+				if(root->right)
+				{
+					que.push(root->right);
+					level++;
+				}
+			}
+			count=level;
+			res.push_back(maxNode);
+		}
+		return res;
+	}
+
+    vector<int> largestValues(TreeNode* root) {
+        vector<int> ret;
+		if(root==NULL)
+			return ret;
+		ret=getLevelMax(root);
+		return ret;
+    }
+};
