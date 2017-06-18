@@ -1,0 +1,36 @@
+/***************************************************************************************************/
+Given an integer, return its base 7 string representation.
+
+Example 1:
+Input: 100
+Output: "202"
+Example 2:
+Input: -7
+Output: "-10"
+Note: The input will be in range of [-1e7, 1e7].
+/***************************************************************************************************/
+
+class Solution {
+public:
+	string convertToBase7(int num)
+	{
+		string res="";
+		if(num==0)
+		    return "0";
+		bool sign=true;
+		if(num<0)
+		{
+			sign=false;
+			num*=-1;
+		}
+		while(num)
+		{
+			res+=to_string(num%7);
+			num/=7;
+		}
+		if(!sign)
+		    res+='-';
+		reverse(res.begin(), res.end());
+		return res;
+	}
+};
