@@ -1,0 +1,53 @@
+/*****************************************************************************************************/
+The Hamming distance between two integers is the number of positions at which the corresponding bits 
+are different.
+
+Now your job is to find the total Hamming distance between all pairs of the given numbers.
+
+Example:
+Input: 4, 14, 2
+
+Output: 6
+
+Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just
+showing the four bits relevant in this case). So the answer will be:
+HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
+Note:
+Elements of the given array are in the range of 0 to 10^9
+Length of the array will not exceed 10^4.
+
+思路：一次判断数组中所有元素的一位，从低到高。如果某位上，为0的元素有m个，为1的元素有n个，则该位会产生的
+Hamming distance为m*n个。所有位的依次相加。
+/*****************************************************************************************************/
+
+class Solution {
+public:
+	int getMax(vector<int> nums)
+	{
+		int maxnum=nums[0];
+		for(int i=0; i<nums.size(); i++)
+			maxnum=max(maxnum, nums[i]);
+		return maxnum;
+	}
+
+    int totalHammingDistance(vector<int>& nums) {
+        int len=nums.size();
+		if(len==0)
+			return 0;
+		int count1=0, count0=0, sum=0;
+		while(getMax(nums))
+		{
+		    count1=0, count0=0;
+			for(int i=0; i<len; i++)
+			{
+				if(nums[i]&1)
+					count1++;
+				else
+					count0++;
+				nums[i]>>=1;
+			}
+			sum+=count0*count1;
+		}
+		return sum;
+    }
+};
