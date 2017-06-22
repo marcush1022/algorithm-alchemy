@@ -1,0 +1,47 @@
+/********************************************************************************************************/
+Given a List of words, return the words that can be typed using letters of alphabet on only one row's of 
+American keyboard like the image below.
+
+Example 1:
+Input: ["Hello", "Alaska", "Dad", "Peace"]
+Output: ["Alaska", "Dad"]
+/********************************************************************************************************/
+
+class Solution {
+public:
+	bool isOneLine(string str)
+	{
+		string str1="QWERTYUIOPqwertyuiop";
+		string str2="ASDFGHJKLasdfghjkl";
+		string str3="ZXCVBNMzxcvbnm";
+		
+		map<char, int> mp;
+		for(int i=0; i<20; i++)
+			mp[str1[i]]=1;
+		for(int i=0; i<18; i++)
+			mp[str2[i]]=2;
+		for(int i=0; i<14; i++)
+			mp[str3[i]]=3;
+		
+	    cout<<mp[str[0]]<<endl;
+		
+		char flag=mp[str[0]];
+		for(int i=1; i<str.length(); i++)
+			if(mp[str[i]]!=flag)
+				return false;
+		return true;
+	}
+
+    vector<string> findWords(vector<string>& words) 
+	{
+		int len=words.size();
+		vector<string> ret;
+		if(len==0)
+			return ret;
+		for(int i=0; i<len; i++)
+			if(isOneLine(words[i]))
+				ret.push_back(words[i]);
+		return ret;
+		
+    }
+};
