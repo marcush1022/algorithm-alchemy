@@ -1,0 +1,63 @@
+/***************************************************************************************************************/
+Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as 
+shown in the below image.
+
+Example:
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output:  [1,2,4,7,5,3,6,8,9]
+Explanation:
+
+Note:
+The total number of elements of the given matrix will not exceed 10,000.
+
+按给定顺序打印数组
+其实打印顺序为：从左上到左下到右下，然后x-1，y+1，方向为右上，最后index为奇数的逆序
+/***************************************************************************************************************/
+
+class Solution {
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
+        int m=matrix.size();
+		vector<int> result;
+		if(m==0)
+			return result;
+		int n=matrix[0].size();
+		vector<vector<int>> temp(m+n-1);
+		int index=0;
+		
+        for(int i=0; i<m; i++, index++)
+		{
+			temp[index].push_back(matrix[i][0]);
+			for(int x=i, y=0; x-1>=0 && y+1<n; x--, y++)
+				temp[index].push_back(matrix[x-1][y+1]);
+		}
+		
+        for(int j=1; j<n; j++, index++)
+		{
+			temp[index].push_back(matrix[m-1][j]);
+			for(int x=m-1, y=j; x-1>=0 && y+1<n; x--, y++)
+				temp[index].push_back(matrix[x-1][y+1]);
+		}
+		
+        for(int i=0; i<index; i++)
+		{
+			if(i%2==1)
+			{
+				for(int j=temp[i].size()-1; j>=0; j--)
+					result.push_back(temp[i][j]);
+			}
+			else
+			{
+				for(int j=0; j<temp[i].size(); j++)
+					result.push_back(temp[i][j]);
+			}
+			
+		}
+        return result;
+    }
+};
