@@ -1,0 +1,66 @@
+/*******************************************************************************************************/
+Given the root of a tree, you are asked to find the most frequent subtree sum. The subtree sum of a node 
+is defined as the sum of all the node values formed by the subtree rooted at that node (including the 
+node itself). So what is the most frequent subtree sum value? If there is a tie, return all the values 
+with the highest frequency in any order.
+
+Examples 1
+Input:
+
+  5
+ /  \
+2   -3
+return [2, -3, 4], since all the values happen only once, return all of them in any order.
+Examples 2
+Input:
+
+  5
+ /  \
+2   -5
+return [2], since 2 happens twice, however -5 only occur once.
+Note: You may assume the sum of values in any subtree is in the range of 32-bit signed integer.
+
+出现次数最多的子树和，难点在求节点子树和
+/*******************************************************************************************************/
+
+class Solution {
+public:
+	map<int, int> mp;
+
+	void getNodeSum(TreeNode *root)
+	{
+		if(root==NULL)
+			return ;
+		if(root->left)
+		{
+			getNodeSum(root->left);
+			root->val+=root->left->val;
+		}	
+		if(root->right)
+		{
+			getNodeSum(root->right);
+			root->val+=root->right->val;
+		}
+		mp[root->val]++;
+	}
+	
+	vector<int> findFrequentTreeSum(TreeNode *root)
+	{
+		vector<int> ret;
+		if(root==NULL)
+			return ret;
+		getNodeSum(root);
+		
+		//map<int, int>::iterator it;
+		//it=mp.begin();
+		int maxTime=INT_MIN;
+		
+		for(auto it=mp.begin(); it!=mp.end(); it++)
+			maxTime=max(maxTime, it->second);
+		
+		for(auto it=mp.begin(); it!=mp.end(); it++)
+			if(it->second==maxTime)
+				ret.push_back(it->first);
+		return ret;
+	}
+};
