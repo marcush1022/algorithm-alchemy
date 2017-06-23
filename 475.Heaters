@@ -1,0 +1,64 @@
+/*********************************************************************************************************/
+Winter is coming! Your first job during the contest is to design a standard heater with fixed warm radius
+to warm all the houses.
+
+Now, you are given positions of houses and heaters on a horizontal line, find out minimum radius of heaters
+so that all houses could be covered by those heaters.
+
+So, your input will be the positions of houses and heaters seperately, and your expected output will be the
+minimum radius standard of heaters.
+
+Note:
+Numbers of houses and heaters you are given are non-negative and will not exceed 25000.
+Positions of houses and heaters you are given are non-negative and will not exceed 10^9.
+As long as a house is in the heaters' warm radius range, it can be warmed.
+All the heaters follow your radius standard and the warm radius will the same.
+Example 1:
+Input: [1,2,3],[2]
+Output: 1
+Explanation: The only heater was placed in the position 2, and if we use the radius 1 standard, then all
+the houses can be warmed.
+Example 2:
+Input: [1,2,3,4],[1,4]
+Output: 1
+Explanation: The two heater was placed in the position 1 and 4. We need to use radius 1 standard, then all
+the houses can be warmed.
+
+思路：
+(1)先对houses和heaters排序，result记录全局最小温暖半径，temp记录当前house的最小温暖半径。
+(2)依次为每个house查找最小的温暖半径（显然，每个house的最小半径只需考虑其左边最近的heaters和右边最近的heaters）。
+(3)对每一个house先查找位置不小于其位置的第一个heater，其位置为j。
+(4)若未找到，则当前house的最小温暖半径由左边最近的heaters决定。
+(5)若第一个heater的位置就不小于当前house的位置，则当前house的最小温暖半径由右边最近的heaters决定。
+(6)若找到的位置不小于当前house位置的第一个heater的位置大于当前house位置（若等于，则当前house的最小温暖半径等于0），
+则当前house的最小温暖半径是其与左边最近的heaters的距离和其与右边最近的heaters的距离的较小值。
+(7)若当前house的最小温暖半径大于全局result，则更新result。
+/*********************************************************************************************************/
+
+class Solution {
+public:
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        int tmp=0, maxRadius=0;
+		int len1=houses.size();
+		int len2=heaters.size();
+		
+		sort(houses.begin(), houses.end());
+		sort(heaters.begin(), heaters.end());
+		
+		int j=0;
+		for(int i=0; i<len1; i++)
+		{
+			while(heaters[j]<houses[i] && j<len2)
+				j++;
+			if(j==len2)
+				tmp=houses[i]-heaters[j-1];
+			else if(j==0)
+				tmp=heaters[j]-houses[i];
+			else if(heaters[j]>houses[i])
+				tmp=min(heaters[j]-houses[i], houses[i]-heaters[j-1]);
+			
+			maxRadius=max(tmp, maxRadius);
+		}
+		return maxRadius;
+    }
+};
