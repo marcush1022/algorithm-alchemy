@@ -8,37 +8,40 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         int len=nums.size();
 		vector<vector<int>> ret;
+		vector<int> tmp;
 		if(len==0)
 			return ret;
-		
-		std::sort(nums.begin(), nums.end());
-		
+		int left, right;
 		int target=0;
-		for(int i=0; i<len-2; i++)
+		sort(nums.begin(), nums.end());
+		for(int i=0; i<len; i++)
 		{
-			
-			int left=i+1;
-			int right=len-1;
+			left=i+1, right=len-1;
 			while(left<right)
 			{
-				int sum=nums[i]+nums[left]+nums[right];
-				if(sum<target)
-					left++;
-				else if(sum>target)
-					right--;
-				else
+				int sum=nums[left]+nums[right]+nums[i];
+				if(sum==target)
 				{
-					ret.push_back({nums[i], nums[left], nums[right]});
-					left++;
-					right--;
-					while(nums[left]==nums[left-1] && left<right)
-						left++;
-					while(nums[right]==nums[right+1] && left<right)
-						right++;
+                    tmp.clear();
+					tmp.push_back(nums[i]);
+					tmp.push_back(nums[left]);
+					tmp.push_back(nums[right]);
+					ret.push_back(tmp);
+                    ++left;
+                    --right;
+                    while(left<right && nums[left]==nums[left-1])
+					    ++left;
+				    while(left<right && nums[right]==nums[right+1])
+					    --right;
 				}
+				else if(sum<target)
+					++left;
+				else
+					--right;
+				
 			}
-			while(nums[i]==nums[i+1] && i<len-2)
-				i++;
+			while(i<len && nums[i]==nums[i+1])
+				++i;
 		}
 		return ret;
     }
