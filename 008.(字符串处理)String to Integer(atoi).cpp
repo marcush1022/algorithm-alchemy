@@ -12,7 +12,7 @@ front.
 class Solution {
 public:
     int myAtoi(string str) {
-        int len=str.length();
+        	int len=str.length();
 		if(len==0)
 			return 0;
 		int i=0, sign=1;
@@ -32,8 +32,8 @@ public:
 				str=str.substr(0, j);
 				break;
 			}
-        if(str.length()==0)  //########################################
-            return 0;
+        	if(str.length()==0)  //########################################
+            		return 0;
 		if(str.length()>10)
 		{
 			if(sign==0)
