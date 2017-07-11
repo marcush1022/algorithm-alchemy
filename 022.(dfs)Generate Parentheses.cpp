@@ -37,3 +37,32 @@ public:
         return ret;
     }
 };
+
+
+Update:
+class Solution {
+public:
+    void dfs(string tmp, vector<string> &ret, int nLeft, int nRight)
+    {
+        if(nLeft==0 && nRight==0)
+            ret.push_back(tmp);
+        if(nLeft>0)
+        {
+			tmp+='(';
+			dfs(tmp, ret, nLeft-1, nRight);
+            tmp.pop_back();
+		}
+		if(nRight>nLeft && nRight>0)
+		{
+			tmp+=')';
+			dfs(tmp, ret, nLeft, nRight-1);
+            tmp.pop_back();
+		}
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> ret;
+		string tmp="";
+		dfs(tmp, ret, n, n);
+		return ret;
+    }
+};
