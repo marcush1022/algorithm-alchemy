@@ -48,19 +48,19 @@ public:
             ret.push_back(tmp);
         if(nLeft>0)
         {
-			tmp+='(';
-			dfs(tmp, ret, nLeft-1, nRight);
-            tmp.pop_back();
-		}
-		if(nRight>nLeft && nRight>0)
-		{
-			tmp+=')';
-			dfs(tmp, ret, nLeft, nRight-1);
-            tmp.pop_back();
-		}
+		tmp+='(';
+		dfs(tmp, ret, nLeft-1, nRight);
+            	tmp.pop_back();
+	}
+	if(nRight>nLeft && nRight>0)
+	{
+		tmp+=')';
+		dfs(tmp, ret, nLeft, nRight-1);
+            	tmp.pop_back();
+	}
     }
     vector<string> generateParenthesis(int n) {
-        vector<string> ret;
+        	vector<string> ret;
 		string tmp="";
 		dfs(tmp, ret, n, n);
 		return ret;
