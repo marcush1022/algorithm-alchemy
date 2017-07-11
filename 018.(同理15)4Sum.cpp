@@ -17,7 +17,7 @@ A solution set is:
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        int len=nums.size();
+        	int len=nums.size();
 		vector<vector<int>> ret;
 		if(len==0 || len<4)
 			return ret;
