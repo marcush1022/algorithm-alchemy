@@ -1,4 +1,4 @@
-/************************************************************************************************/
+/*
 Given an array and a value, remove all instances of that value in place and return the new length.
 
 Do not allocate extra space for another array, you must do this in place with constant memory.
@@ -10,7 +10,7 @@ Given input array nums = [3,2,2,3], val = 3
 
 Your function should return length = 2, with the first two elements of nums being 2.
 //同上题，就是快慢指针
-/************************************************************************************************/
+*/
 
 class Solution {
 public:
