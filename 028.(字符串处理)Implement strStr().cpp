@@ -1,8 +1,13 @@
-/**********************************************************************************************************/
+/*
 Implement strStr().
 
 Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
-/**********************************************************************************************************/
+*/
+
+/*string find(): 
+Return :
+The position of the first character of the first match.
+If no matches were found, the function returns string::npos.*/
 
 I. 
 class Solution {
@@ -17,19 +22,19 @@ public:
 II. 
 class Solution {
 public:
-    int strStr(string str, string substr) {
-        int len1=str.length(), len2=substr.length();
+    int strStr(string str, string sub) {
+        int len1=str.length(), len2=sub.length();
         if(len1==len2 && len1==0)
             return 0;
-        int index;
+        int index, j;
         for(int i=0; i<len1; i++)
         {
-            int j=0, index=i;
-            while(index<len1 && j<len2 && str[index]==substr[j])
+            index=i, j=0;
+            while(j<len2 && str[index]==sub[j])
             {
-                index++; j++;
+                ++index;
+                ++j;
             }
-            cout<<j;
             if(j==len2)
                 return i;
         }
