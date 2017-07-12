@@ -10,21 +10,36 @@ Given input array nums = [1,1,2],
 Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. 
 It doesn't matter what you leave beyond the new length.
 /*******************************************************************************************************/
-
 class Solution
 {
 	public:
 	int removeDuplicates(vector<int> &nums)
 	{
-		int len=nums.size();
-		if(len==0)
-			return 0;
-		int ret=1;
-		for(int i=1; i<len; i++)
+		map<int, int> m;
+		int ret=0;
+		for(int i=0; i<nums.size(); i++)
 		{
-			if(nums[i]!=nums[i-1])
+			if(!m[nums[i]]++)
 				nums[ret++]=nums[i];
 		}
+		
 		return ret;
 	}
 };
+
+Update:
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int len=nums.size();
+        if(len==0)
+            return 0;
+        int ret=1;
+        for(int i=1; i<len; i++)
+            if(nums[i]!=nums[i-1])
+                nums[ret++]=nums[i];
+        return ret;
+    }
+};
+
+
