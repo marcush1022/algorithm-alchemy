@@ -9,6 +9,7 @@ Example:
 Given input array nums = [3,2,2,3], val = 3
 
 Your function should return length = 2, with the first two elements of nums being 2.
+//同上题，就是快慢指针
 /************************************************************************************************/
 
 class Solution {
@@ -17,7 +18,6 @@ public:
         int len=nums.size();
         if(len==0)
             return 0;
-        //sort(nums.begin(), nums.end());
         int ret=0;
         for(int i=0; i<len; i++)
         {
