@@ -1,4 +1,4 @@
-/*************************************************************************************************/
+/*
 Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique 
 combinations in C where the candidate numbers sums to T.
 
@@ -13,6 +13,9 @@ A solution set is:
   [7],
   [2, 2, 3]
 ]
+
+dfs模板级题目...
+取数字和为给定值，可以重复，求有多少种组合
 
 Note: 回溯算法递归算法框架：
 int a[n];
@@ -34,36 +37,34 @@ int a[n];
           }
       }
  }
-/*************************************************************************************************/
+*/
 
 class Solution {
 public:
-	void getCombination(vector<int> &candidates, vector<int> &tmp, int index, int target, int sum, vector<vector<int>> &ret)
-	{
-		if(sum==target)
-		{
-			ret.push_back(tmp);
-			return ;
-		}
-		if(sum>target)
-			return ;
-		for(int i=index; i<candidates.size(); i++)
-		{
-			sum+=candidates[i];
-			tmp.push_back(candidates[i]);
-			getCombination(candidates, tmp, i, target, sum, ret);
-			tmp.pop_back();
-			sum-=candidates[i];
-		}
-			
-	}
-
-    	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        	vector<vector<int>> ret;
-		if(candidates.size()==0)
-			return ret;
-		vector<int> tmp;
-		getCombination(candidates, tmp, 0, target, 0, ret);
-		return ret;
+    void dfs(vector<int> nums, vector<vector<int>> &ret, vector<int> &tmp, int &sum, int index, int target)
+    {
+        if(sum==target)
+        {
+            ret.push_back(tmp);
+            return ;
+        }
+        if(sum>target)   //不要漏掉sum>target情况,不然死循环
+            return ;
+        for(int i=index; i<nums.size(); i++)
+        {
+            sum+=nums[i];
+            tmp.push_back(nums[i]);
+            dfs(nums, ret, tmp, sum, i, target);
+            sum-=nums[i];
+            tmp.pop_back();
+        }
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+        vector<vector<int>> ret;
+        vector<int> tmp;
+        int sum=0;
+        dfs(nums, ret, tmp, sum, 0, target);
+        return ret;
     }
 };
