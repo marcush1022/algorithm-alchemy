@@ -9,6 +9,9 @@ Note: A word is defined as a character sequence consists of non-space characters
 For example, 
 Given s = "Hello World",
 return 5.
+
+主要难点在特殊值处理
+" a", " ", "a "
 */
 
 class Solution {
