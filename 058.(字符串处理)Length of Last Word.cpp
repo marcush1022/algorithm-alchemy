@@ -13,30 +13,22 @@ return 5.
 
 class Solution {
 public:
-    int lengthOfLastWord(string s) 
-    {
+    int lengthOfLastWord(string s) {
         int len=s.length();
-        if(len==0)
-            return 0;
-        int left=0, right=0;
-        int ret=0;
-        
-        while(s[left]!='\0')
+        bool flag=0;
+        int cnt=0;
+        for(int i=len-1; i>=0; i--)
         {
-            if(s[left]==' ')
+            if(s[i]==' ' && flag==0)
+                continue;
+            if(s[i]!=' ')
             {
-                left++;
-                right++;
-            }
-            else if(s[right]=='\0' || s[right]==' ')
-            {
-                cout<<right;
-                ret=--right-left+1;
-                left=++right;
+                flag=1;
+               cnt++;
             }
             else
-                right++;
+                 break;      
         }
-        return ret;
+        return cnt;
     }
 };
