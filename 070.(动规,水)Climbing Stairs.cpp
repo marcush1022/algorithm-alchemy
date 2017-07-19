@@ -1,4 +1,4 @@
-/****************************************************************************************/
+/*
 You are climbing a stair case. It takes n steps to reach to the top.
 
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -6,23 +6,21 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 Note: Given n will be a positive integer.
 
 注意: 直接递归会超时
-/****************************************************************************************/
+*/
 
 class Solution {
 public:
     int climbStairs(int n) {
-        if(n==0)
-            return 1;
         if(n<=2)
             return n;
-        int pre1=1, pre2=2;
-        int cur;
+        int ppre=1, pre=2;
+        int p;
         for(int i=3; i<=n; i++)
         {
-            cur=pre1+pre2;
-            pre1=pre2;
-            pre2=cur;
+            p=ppre+pre;
+            ppre=pre;
+            pre=p;
         }
-        return cur;
+        return p;
     }
 };
