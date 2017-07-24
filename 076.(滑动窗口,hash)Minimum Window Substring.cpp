@@ -1,4 +1,4 @@
-/*****************************************************************************************/
+/*
 Given a string S and a string T, find the minimum window in S which will contain all the 
 characters in T in complexity O(n).
 
@@ -27,49 +27,41 @@ r右移之后所指向的字符是否在Hash表中出现过：如果出现过，
 时间复杂度：O(l1+l2)（l1和l2分别为字符串S和T的长度）
 
 空间复杂度：O(l2)
-/*****************************************************************************************/
+*/
 
-class Solution
-{
-	public:
-	string minWindow(string s, string t)
-	{
-	    int len=s.length();
-		map<char, int> m;
-		
-		int right=0, left=0, count=0, minLeft=0;
-		int minLen=s.length()+1;
-		
-		for(int i=0; i<t.length(); i++)
-			++m[t[i]];
-		
-		for(right=0; right<len; right++)
-		{
-			if(m.find(s[right])!=m.end())
-			{
-				if(--m[s[right]]>=0)  //no duplicate
-					count++;
-					
-				while(count==t.length())
-				{
-					if(right-left+1 < minLen)
-					{
-					    minLeft=left;
-						minLen=right-left+1;
-					}
-				
-					if(m.find(s[left])!=m.end())
-						if(++m[s[left]] > 0) //at least one left
-							count--;
-					left++;
-				}//while
-			}//if
-				
-		}
-		
-		if(minLen>len)
-			return "";
-		
-		return s.substr(minLeft, minLen);
-	}
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int lenS=s.length(), lenT=t.length();
+        map<int, int> mp;
+        int right=0, left=0;
+        int count=0, minLen=INT_MAX, minLeft;
+        for(int i=0; i<lenT; i++)
+            mp[t[i]]++;
+        for(int right=0; right<lenS; right++)
+        {
+            if(mp.find(s[right])!=mp.end())
+            {
+                if(--mp[s[right]]>=0)
+                    count++;
+            
+                while(count==lenT)
+                {
+                    if(right-left+1<minLen)
+                    {
+                        minLen=right-left+1;
+                        minLeft=left;
+                    }
+                    if(mp.find(s[left])!=mp.end())
+                        if(++mp[s[left]]>0)
+                            count--;
+                    left++;
+                }
+            }
+        }
+        if(minLen>lenS)
+            return "";
+        else
+            return s.substr(minLeft, minLen);
+    }
 };
