@@ -5,6 +5,8 @@ leaving only distinct numbers from the original list.
 For example,
 Given 1->2->3->3->4->4->5, return 1->2->5.
 Given 1->1->1->2->3, return 2->3.
+
+p一直走到最后一个不重复的位置
 */
 
 class Solution {
