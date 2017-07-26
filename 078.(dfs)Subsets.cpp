@@ -49,6 +49,8 @@ public:
 };
 
 //方法2
+从1开始查询到12, 123, 123到达nums.size()结束，然后pop掉2，接下来13，
+pop掉1，然后再从2开始
 class Solution {
 public:
     void dfs(int index, vector<vector<int>> &ret, vector<int> nums, vector<int> tmp)
