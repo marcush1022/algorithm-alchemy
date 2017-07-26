@@ -47,3 +47,26 @@ public:
         return ret;
     }
 };
+
+//方法2
+class Solution {
+public:
+    void dfs(int index, vector<vector<int>> &ret, vector<int> nums, vector<int> tmp)
+    {
+        ret.push_back(tmp);
+        for(int i=index; i<nums.size(); i++)
+        {
+            tmp.push_back(nums[i]);
+            dfs(i+1, ret, nums, tmp);
+            tmp.pop_back();
+        }
+    }
+    
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> ret;
+        vector<int> tmp;
+        sort(nums.begin(), nums.end());
+        dfs(0, ret, nums, tmp);
+        return ret;
+    }
+};
