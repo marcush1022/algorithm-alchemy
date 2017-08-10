@@ -1,4 +1,4 @@
-/**************************************************************************************/
+/*
 Given an array of integers, every element appears three times except for one,
 which appears exactly once. Find that single one.
 
@@ -11,20 +11,17 @@ which appears exactly once. Find that single one.
 换句话说，如果第i位为1的元素总数不为3的整数倍，则孤异数的第i位为1，否则为0.
 
 （如果非孤异元素重复n次，则判断是否为n的整数倍）
-/**************************************************************************************/
+*/
 
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        if(nums.size()==0)
-            return -1;
-        int mask=1, count1=0;
-        int ret=0;
-        
+        int mask=1, ret=0, count1=0;
+        int len=nums.size();
         while(mask)
         {
             count1=0;
-            for(int i=0; i<nums.size(); i++)
+            for(int i=0; i<len; i++)
             {
                 if(nums[i]&mask)
                     count1++;
