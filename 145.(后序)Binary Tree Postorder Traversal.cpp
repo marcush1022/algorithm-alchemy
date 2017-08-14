@@ -25,3 +25,22 @@ public:
         return ret;
     }
 };
+
+//递归
+class Solution {
+public:
+    void post(vector<int> &ret, TreeNode *root)
+    {
+        if(root==NULL)
+            return ;
+        post(ret, root->left);
+        post(ret, root->right);
+        ret.push_back(root->val);
+    }
+    
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> ret;
+        post(ret, root);
+        return ret;
+    }
+};
