@@ -1,4 +1,4 @@
-/**************************************************************************************/
+/*
 Given an array of integers that is already sorted in ascending order, find two numbers 
 such that they add up to a specific target number.
 
@@ -11,29 +11,29 @@ the same element twice.
 
 Input: numbers={2, 7, 11, 15}, target=9
 Output: index1=1, index2=2
-/**************************************************************************************/
+*/
 
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> ret;
         int len=nums.size();
+        vector<int> ret;
         if(len==0)
             return ret;
         int left=0, right=len-1;
         while(left<right)
         {
-            int sum=nums[left]+nums[right];
-            if(sum==target)
+            int tmp=nums[left]+nums[right];
+            if(tmp==target)
             {
                 ret.push_back(left+1);
                 ret.push_back(right+1);
-                break;
+                return ret;
             }
-            else if(sum<target)
-                left++;
+            else if(tmp<target)
+                ++left;
             else
-                right--;
+                --right;
         }
         return ret;
     }
