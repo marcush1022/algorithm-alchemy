@@ -1,4 +1,4 @@
-/********************************************************************************/
+/*
 Given a positive integer, return its corresponding column title as appear in an
 Excel sheet.
 
@@ -18,7 +18,7 @@ For example:
  while(n) {ret+=char(n%2); n=n/2;}
  
  注意：由于下标从1开始而不是从0开始，因此要减一
- /********************************************************************************/
+*/
 
 class Solution {
 public:
