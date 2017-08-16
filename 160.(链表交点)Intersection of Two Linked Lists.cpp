@@ -18,6 +18,8 @@ If the two linked lists have no intersection at all, return null.
 The linked lists must retain their original structure after the function returns.
 You may assume there are no cycles anywhere in the entire linked structure.
 Your code should preferably run in O(n) time and use only O(1) memory.
+
+两个链表先比较长短并求两者的差diff，然后长的先走diff步，然后两者同时走直到结点相遇或走到尾端
 */
 
 class Solution {
