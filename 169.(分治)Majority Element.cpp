@@ -39,3 +39,20 @@ public:
 		return nums[pos];
     	}
 };
+
+
+//用哈希的方法
+class Solution {
+public:
+    	int majorityElement(vector<int>& nums) {
+        	int len=nums.size();
+		if(len==0)
+			return -1;
+		map<int, int> map;
+		for(int i=0; i<len; i++)
+		{
+		    if(++map[nums[i]]>(len/2))
+		        return nums[i];
+		}
+    	}
+};
