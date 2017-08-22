@@ -17,25 +17,25 @@ public:
 	{
 		int val=nums[right];
 		for(int i=left; i<right; i++)
-        {
-            if(nums[i]<val)
-                swap(nums[i], nums[left++]);
-        }
-        swap(nums[left], nums[right]);
-        return left;
+		{
+		    if(nums[i]<val)
+			swap(nums[i], nums[left++]);
+		}
+		swap(nums[left], nums[right]);
+		return left;
 	}
 
-    int majorityElement(vector<int>& nums) {
-        int len=nums.size();
-	int pos=len/2, ans=0;
-	int left=0, right=len-1;
-	while((ans=divide(nums, left, right))!=pos)
-        {
-            if(ans>pos)
-                right=ans-1;
-            else
-                left=ans+1;
-        }
-        return nums[pos];
-    }
+    	int majorityElement(vector<int>& nums) {
+        	int len=nums.size();
+		int pos=len/2, ans=0;
+		int left=0, right=len-1;
+		while((ans=divide(nums, left, right))!=pos)
+		{
+		    if(ans>pos)
+			right=ans-1;
+		    else
+			left=ans+1;
+		}
+		return nums[pos];
+    	}
 };
