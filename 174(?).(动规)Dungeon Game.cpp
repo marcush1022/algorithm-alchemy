@@ -1,4 +1,4 @@
-/********************************************************************************/
+/*
 The demons had captured the princess (P) and imprisoned her in the bottom-right 
 corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. 
 Our valiant knight (K) was initially positioned in the top-left room and must 
@@ -33,36 +33,30 @@ MinHp:
 
 从右下角位置开始倒推，每个位置需要同时满足两个条件：（1）该位置HP为1(保证不死)，
 （2）该位置的HP足够到达公主(使用动态规划)
-/********************************************************************************/
+*/
 
-class Solution
-{
-	public:
-	int calculateMinimumHP(vector<vector<int>>& dungeon)
-	{
-		int rows=dungeon.size();
-		int cols=dungeon[0].size();
-		vector<vector<int>> minHp(rows, vector<int>(cols, 0));
-		
-		if(rows==0 || cols==0)
-			return 0;
-		
-		for(int i=rows-1; i>=0; i--)
-		{
-			for(int j=cols-1; j>=0; j--)
-			{
-				if(i==rows-1 && j==cols-1)
-					minHp[i][j]=max(1, 1-dungeon[i][j]);
-				else if(i==rows-1)
-					minHp[i][j]=max(1, minHp[i][j+1]-dungeon[i][j]);
-				else if(j==cols-1)
-					minHp[i][j]=max(1, minHp[i+1][j]-dungeon[i][j]);
-				else
-					minHp[i][j]=max(1, min(minHp[i][j+1]-dungeon[i][j], minHp[i+1][j]-dungeon[i][j]));
-			}
-		}
-		
-		return minHp[0][0];
-	
-	}
+class Solution {
+public:
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        int rows=dungeon.size(), cols=dungeon[0].size();
+        if(rows==0 || cols==0)
+            return 0;
+        vector<vector<int>> minHp(rows, vector<int>(cols, 0));
+        int i, j;
+        for(i=rows-1; i>=0; i--)
+        {
+            for(j=cols-1; j>=0; j--)
+            {
+                if(i==rows-1 && j==cols-1)
+                    minHp[i][j]=max(1, 1-dungeon[i][j]);
+                else if(i==rows-1)
+                    minHp[i][j]=max(1, minHp[i][j+1]-dungeon[i][j]);
+                else if(j==cols-1)
+                    minHp[i][j]=max(1, minHp[i+1][j]-dungeon[i][j]);
+                else
+                    minHp[i][j]=max(1, min(minHp[i+1][j]-dungeon[i][j], minHp[i][j+1]-dungeon[i][j]));
+            }
+        }
+        return minHp[0][0];
+    }
 };
