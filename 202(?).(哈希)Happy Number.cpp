@@ -1,4 +1,4 @@
-/**************************************************************************************/
+/*
 Write an algorithm to determine if a number is "happy".
 
 A happy number is a number defined by the following process: Starting with any positive 
@@ -12,31 +12,30 @@ Example: 19 is a happy number
 82 + 22 = 68
 62 + 82 = 100
 12 + 02 + 02 = 1
-/**************************************************************************************/
+*/
 
-class Solution
-{
-	public:
-	bool isHappy(int n)
-	{
-		if(n<1)
-			return false;
-		unordered_set<int> set;
-		int tmp=0;
-	
-		while(set.find(n)==set.end())
-		{
-			set.insert(n);
-			tmp=0;
-			while(n)
-			{
-				tmp+=(n%10) * (n%10);
-				n=n/10;
-			}
-			n=tmp;
-			if(n==1)
-				return true;
-		}
-		return false;
-	}
+class Solution {
+public:
+    map<int, int> mp;
+
+    bool isHappy(int n)
+    {
+        int sum=0;
+        if(n==1 || sum==1)
+            return true;
+        if(n==0)
+            return false;
+        mp[n]++;
+        while(n)
+        {
+            int tmp=n%10;
+            sum+=tmp*tmp;
+            n/=10;
+        }
+        mp[sum]++;
+        if(mp.find(sum)!=mp.end())
+            return false;
+        return isHappy(sum);
+    }
+
 };
