@@ -12,10 +12,9 @@ the subarray [4,3] has the minimal length under the problem constraint.
 2. 若元素之和 ≥ s，更新最小长度。然后窗口左边沿右移一位（即移除窗口中第一个元素），重复第1步。
 
 从第一个元素开始累加和，
-当超过给定的s时，此时从最开始的ori点处
-开始，用sum减去，直到此时的sum再次小于
-s。注意，期间一旦sum >= s时，求最小的
-元素数。
+当超过给定的s时，此时从最开始的点处开始，用sum减去，直到此时的sum再次小于s。注意，期间一旦sum >= s时，求最小的元素数。
+
+注意：是>=s
 */
 
 class Solution {
