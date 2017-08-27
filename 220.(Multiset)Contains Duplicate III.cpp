@@ -1,4 +1,4 @@
-/**********************************************************************************************/
+/*
 Given an array of integers, find out whether there are two distinct indices i and j in the array 
 such that the absolute difference between nums[i] and nums[j] is at most t and the absolute 
 difference between i and j is at most k.
@@ -12,7 +12,7 @@ set和multiset会根据特定的排序准则，自动将元素进行排序。不
 nums[i] - t <= x <= nums[i] + t　的位置。在C++的STL中提供了二叉排序树的数据结构set，并且
 其提供了一个函数lower_bound，可以查找树中第一个大于等于某值的位置，利用这个函数可以找到第一个大于等
 于nums[i]-t的指针，然后再判断其值是否满足条件即可。
-/**********************************************************************************************/
+*/
 
 class Solution {
 public:
