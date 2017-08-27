@@ -1,4 +1,4 @@
-/***********************************************************************************/
+/*
 Given an array of n positive integers and a positive integer s, find the minimal 
 length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.
 
@@ -16,7 +16,7 @@ the subarray [4,3] has the minimal length under the problem constraint.
 开始，用sum减去，直到此时的sum再次小于
 s。注意，期间一旦sum >= s时，求最小的
 元素数。
-/***********************************************************************************/
+*/
 
 class Solution {
 public:
