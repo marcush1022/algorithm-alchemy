@@ -1,4 +1,4 @@
-/***************************************************************************************/
+/*
 Given an integer n, count the total number of digit 1 appearing in all non-negative 
 integers less than or equal to n.
 
@@ -6,7 +6,6 @@ For example:
 Given n = 13,
 Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
 
-Note: Thanks to @fyuanfen
 对这个数字的每一位求存在1的数字的个数。从个位开始到最高位。
 
 举个例子54215，比如现在求百位上的1，54215的百位上是2。可以看到xx100到xx199的百位上都是1，
@@ -24,30 +23,28 @@ Note: Thanks to @fyuanfen
     case 1: n=3141092, a= 31410, b=92. 计算百位上1的个数应该为 3141 *100 次.
     case 2: n=3141192, a= 31411, b=92. 计算百位上1的个数应该为 3141 *100 + (92+1) 次. 
     case 3: n=3141592, a= 31415, b=92. 计算百位上1的个数应该为 (3141+1) *100 次. 
-以上三种情况可以用 一个公式概括:
-(a + 8) / 10 * m + (a % 10 == 1) * (b + 1);
-/***************************************************************************************/
+
+*/
 
 class Solution {
 public:
     int countDigitOne(int n) {
         long factor=1;
-		long cdigit, highN, lowN=0;
-		int count=0;
-		while(n/factor>0)
-		{
-			cdigit=(n%(factor*10))/factor;
-			highN=n/(factor*10);
-			if(cdigit==1)
-				count+=highN*factor+lowN+1;
-			if(cdigit==0)
-				count+=highN*factor;
-			if(cdigit>1)
-				count+=(highN+1)*factor;
-			
-			lowN=n%(factor*10);
-			factor*=10;
-		}
-		return count;
+        long cdigit=0, highN=0, lowN=0;
+        int count=0;
+        while(n/factor>0)
+        {
+            cdigit=(n%(factor*10))/factor;
+            highN=n/(factor*10);
+            if(cdigit==1)
+                count+=highN*factor+lowN+1;
+            if(cdigit==0)
+                count+=highN*factor;
+            if(cdigit>1)
+                count+=(highN+1)*factor;
+            lowN=n%(factor*10);
+            factor*=10;
+        }
+        return count;
     }
 };
