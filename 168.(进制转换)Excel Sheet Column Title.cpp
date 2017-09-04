@@ -15,7 +15,8 @@ For example:
  即10进制转为26进制。
  
  同理10进制转2进制:
- while(n) {ret+=char(n%2); n=n/2;}
+ while(n) {ret+=(n%2+'0'); n=n/2;}
+ reverse
  
  注意：由于下标从1开始而不是从0开始，因此要减一
 */
