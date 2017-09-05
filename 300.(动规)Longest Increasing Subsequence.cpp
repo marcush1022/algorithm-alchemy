@@ -9,6 +9,9 @@ Note that there may be more than one LIS combination, it is only necessary for y
 Your algorithm should run in O(n2) complexity.
 
 Follow up: Could you improve it to O(n log n) time complexity?
+
+在i下标前面的所有nums值当中，找到所有比nums[i]小的，且dp值最大的那个值，然后加1
+然后最长递增子序列的长度为所有dp[i]当中最大的值
 */
 
 class AscentSequence {
