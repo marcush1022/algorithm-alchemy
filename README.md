@@ -1,1 +1,1 @@
-# LeetCode-C++
+# LeetCode 练习
