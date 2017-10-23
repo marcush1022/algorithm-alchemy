@@ -16,30 +16,6 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 了最后一个字符都没有重复但是此时的j-i是最长的长度，所以要在return语句前再加上一句判断j-i的大小是否比当前maxlen大
 /******************************************************************************************************/
 
-
-class Solution {
-public:
-    int lengthOfLongestSubstring(string s) {
-        int maxlen, left, sz;
-		sz=s.length();
-		left=maxlen=0;
-		int ex[200];
-		memset(ex,-1,sizeof(ex));
-		for(int i=0;i<sz;i++)
-		{
-			if(ex[s[i]]>=left)
-			{
-				left=ex[s[i]]+1;
-			}
-			ex[s[i]]=i;
-			maxlen=max(maxlen,i-left+1);
-		}
-		return maxlen;
-		
-    }
-};
-
-Update:
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
