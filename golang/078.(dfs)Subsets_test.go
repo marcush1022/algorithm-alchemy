@@ -22,6 +22,28 @@ func TestGetSubsets(t *testing.T) {
 			{},
 		},
 	))
+
+	assert.Equal(t, "", compareSubsets(GetSubsets([]int{1, 2}),
+		[][]int{
+			{1},
+			{2},
+			{1, 2},
+			{},
+		},
+	))
+
+	assert.Equal(t, "", compareSubsets(GetSubsets([]int{3}),
+		[][]int{
+			{3},
+			{},
+		},
+	))
+
+	assert.Equal(t, "", compareSubsets(GetSubsets([]int{}),
+		[][]int{
+			{},
+		},
+	))
 }
 
 func compareSubsets(act, exp [][]int) string {

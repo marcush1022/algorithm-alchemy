@@ -32,31 +32,26 @@ import (
 	"sort"
 )
 
-func popBack(s []int) {
-	if len(s) == 0 {
-		return
-	}
-	s = s[:len(s)-1]
-}
-
 func dfs(result *[][]int, path []int, numbers []int, index int) {
 	if index == len(numbers) {
 		return
 	}
 	for i := index; i < len(numbers); i++ {
 		path = append(path, numbers[i])
-		*result = append(*result, path)
-		fmt.Println(">>", result)
+		tmp := make([]int, len(path), len(path))
+		copy(tmp, path)
+		*result = append(*result, tmp)
+		fmt.Println(">>>>> result", result)
 		dfs(result, path, numbers, i+1)
-		popBack(path)
+		path = path[:len(path) - 1]
 	}
 }
 
 func GetSubsets(numbers []int) [][]int {
-	results := make([][]int, 0)
+	results := &[][]int{}
 	path := make([]int, 0)
-	results = append(results, path)
+	*results = append(*results, path)
 	sort.Ints(numbers)
-	dfs(&results, path, numbers, 0)
-	return results
+	dfs(results, path, numbers, 0)
+	return *results
 }
