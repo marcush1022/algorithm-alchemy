@@ -32,18 +32,24 @@ import (
 	"sort"
 )
 
+func popBack(slice []int) []int {
+	// pop back and deep copy
+	slice = slice[:len(slice)-1]
+	tmp := make([]int, len(slice), len(slice))
+	copy(tmp, slice)
+	return tmp
+}
+
 func dfs(result *[][]int, path []int, numbers []int, index int) {
 	if index == len(numbers) {
 		return
 	}
 	for i := index; i < len(numbers); i++ {
 		path = append(path, numbers[i])
-		tmp := make([]int, len(path), len(path))
-		copy(tmp, path)
-		*result = append(*result, tmp)
+		*result = append(*result, path)
 		fmt.Println(">>>>> result", result)
 		dfs(result, path, numbers, i+1)
-		path = path[:len(path) - 1]
+		path = popBack(path)
 	}
 }
 
