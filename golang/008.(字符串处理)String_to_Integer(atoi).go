@@ -6,7 +6,6 @@ package golang
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
 
 /*
@@ -42,14 +41,16 @@ func isDigit(ch byte) bool {
 
 func MyAtoi(str string) int {
 	sLen := len(str)
+	index := 0
+	// skip leading spaces
+	for index < len(str) && isSpace(str[index]) {
+		index++
+	}
+	sign := str[index]
+
 	// fast path for small integers that fit int type
 	if intSize == 32 && (0 < sLen && sLen < 10) || intSize == 64 && (0 < sLen && sLen < 19) {
-		index := 0
-		for index < len(str) && isSpace(str[index]) {
-			index++
-		}
-
-		sign := str[index]
+		// deal +-
 		if str[index] == '-' || str[index] == '+' {
 			index++
 		}
@@ -60,42 +61,33 @@ func MyAtoi(str string) int {
 			return 0
 		}
 
-		fmt.Println(">>>>>>>>>>>>>> 1", str)
-
-		for i := 0; i < len(str); i++ {
-			// skip leading spaces
-			if isSpace(str[i]) {
-				continue
-			}
-
-			if !isDigit(str[i]) {
-				str = str[:i]
+		sum := 0
+		for _, ch := range []byte(str) {
+			ch -= '0'
+			if ch > 9 {
 				break
 			}
-		}
-
-		if len(str) == 0 {
-			return 0
-		}
-
-		fmt.Println(">>>>>>>>>>>>>> 2", string(str))
-
-		sum := 0
-		for _, ch := range str {
 			sum = sum*10 + int(ch)
+			fmt.Println(">>>>>>>>>>>> sum", sum, int(ch), str)
 		}
 
 		if sign == '-' {
 			sum = -sum
 		}
+		fmt.Println(">>>>>>>>>>>> results", sum)
+		if sum > 2147483647 {
+			return 2147483647
+		}
+
+		if sum < -2147483648 {
+			return -2147483648
+		}
 		return sum
 	}
 
-	// slow path for invalid, big integers
-	i64, err := strconv.ParseInt(str, 10, 10)
-	if err != nil {
-		fmt.Println(ErrSyntax, err)
-		return 0
+	if sign == '-' {
+		return -2147483648
 	}
-	return int(i64)
+	return 2147483647
+
 }
