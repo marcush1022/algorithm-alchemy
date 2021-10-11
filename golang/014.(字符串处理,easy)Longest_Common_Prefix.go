@@ -30,3 +30,21 @@ Constraints:
 	strs[i] consists of only lower-case English letters.
 
 */
+
+func LongestCommonPrefix(strings []string) string {
+	if len(strings) == 0 {
+		return ""
+	}
+	prefix := strings[0]
+	// indexOfPre is index of common prefix of each word
+	indexOfPre := 0
+	for indexOfWord := 0; indexOfWord < len(strings); indexOfWord++ {
+		for indexOfPre = 0; indexOfPre < len(prefix) && indexOfPre < len(strings[indexOfWord]); indexOfPre++ {
+			if strings[indexOfWord][indexOfPre] != prefix[indexOfPre] {
+				break
+			}
+		}
+		prefix = strings[indexOfWord][:indexOfPre]
+	}
+	return prefix
+}
