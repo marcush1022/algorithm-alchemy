@@ -4,24 +4,13 @@
 package golang_demo
 
 import (
-"fmt"
+	"fmt"
 )
 
 const MAXVEX int = 6
 const MAXWEIGHT int = 1000
 
-//var shortTablePath = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
 var shortTablePath = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
-
-var NodeWeights = map[int]int{
-	0:10,
-	1: 20,
-	2: 30,
-	3: 40,
-	4: 15,
-	5: 20,
-}
-
 
 func GetPath() {
 	graph := NewGraph2()
@@ -50,8 +39,8 @@ func GetPath() {
 		}
 		isgetPath[Vx] = true
 		for j := 0; j < len(graph); j++ {
-			if !isgetPath[j] && TablePathMin+graph[Vx][j]+NodeWeights[j] < shortTablePath[j] {
-				shortTablePath[j] = TablePathMin + graph[Vx][j]+NodeWeights[j]
+			if !isgetPath[j] && TablePathMin+graph[Vx][j] < shortTablePath[j] {
+				shortTablePath[j] = TablePathMin + graph[Vx][j]
 			}
 		}
 
@@ -91,11 +80,28 @@ func GetPath() {
 
 func NewGraph2() [MAXVEX][MAXVEX]int {
 	var graph [MAXVEX][MAXVEX]int
-	var v0a = [MAXVEX]int{0, 0, 0, 0, MAXWEIGHT, MAXWEIGHT}
-	var v1b = [MAXVEX]int{MAXWEIGHT, 0, MAXWEIGHT, 0, 0, MAXWEIGHT}
+	var v0a = [MAXVEX]int{0, 20, 30, 40, MAXWEIGHT, MAXWEIGHT}
+	var v1b = [MAXVEX]int{MAXWEIGHT, 0, MAXWEIGHT, 40, 15, MAXWEIGHT}
 	var v2c = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, 0, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
 	var v3d = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, MAXWEIGHT, MAXWEIGHT}
-	var v4e = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 0}
+	var v4e = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 20}
+	var v5f = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0}
+	graph[0] = v0a
+	graph[1] = v1b
+	graph[2] = v2c
+	graph[3] = v3d
+	graph[4] = v4e
+	graph[5] = v5f
+	return graph
+}
+
+func NewGraph3() [MAXVEX][MAXVEX]int {
+	var graph [MAXVEX][MAXVEX]int
+	var v0a = [MAXVEX]int{0, 1, 4, 2, MAXWEIGHT, MAXWEIGHT}
+	var v1b = [MAXVEX]int{MAXWEIGHT, 0, MAXWEIGHT, 2, 3, MAXWEIGHT}
+	var v2c = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, 0, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
+	var v3d = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 5, MAXWEIGHT}
+	var v4e = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 6}
 	var v5f = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0}
 	graph[0] = v0a
 	graph[1] = v1b
