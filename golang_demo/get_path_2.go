@@ -60,6 +60,7 @@ func GetPath2(start, end string, serviceInvocations map[string][]string, invocat
 			}
 		}
 	}
+	fmt.Println(">>>>>> Result Dist:")
 	for _, v := range dist {
 		fmt.Println(v)
 	}
@@ -97,6 +98,7 @@ func InitDist(serviceInvocations map[string][]string, invocationsTime map[string
 		}
 	}
 
+	fmt.Println(">>>>>> Init Dist")
 	for _, v := range dist {
 		fmt.Println(v)
 	}
