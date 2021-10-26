@@ -10,5 +10,5 @@ func TestGetPath(t *testing.T) {
 }
 
 func TestGetPath2(t *testing.T) {
-	GetPath2()
+	GetPath2("b", "f")
 }
