@@ -5,12 +5,26 @@ package golang_demo
 
 import (
 	"fmt"
+	"math"
 )
 
 const MAXVEX int = 6
-const MAXWEIGHT int = 1000
+const MAX_WEIGHT int = math.MaxInt16
 
-var shortTablePath = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
+type Path struct {
+	SumWeight   int
+	PassedNodes string
+}
+
+//var shortTablePath = [MAXVEX]int{MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT}
+var shortTablePath = [MAXVEX]Path{
+	{SumWeight: MAX_WEIGHT, PassedNodes: ""},
+	{SumWeight: MAX_WEIGHT, PassedNodes: ""},
+	{SumWeight: MAX_WEIGHT, PassedNodes: ""},
+	{SumWeight: MAX_WEIGHT, PassedNodes: ""},
+	{SumWeight: MAX_WEIGHT, PassedNodes: ""},
+	{SumWeight: MAX_WEIGHT, PassedNodes: ""},
+}
 
 func GetPath() {
 	graph := NewGraph2()
@@ -21,88 +35,47 @@ func GetPath() {
 
 	// 获取v0这一行的权值数组
 	for v := 0; v < len(graph); v++ {
-		shortTablePath[v] = graph[0][v]
+		shortTablePath[v].SumWeight = graph[0][v]
 	}
-	shortTablePath[0] = 0
+	shortTablePath[0].SumWeight = 0
 	isgetPath[0] = true
 
 	//遍历v1 ~ v8
 	for v := 1; v < len(graph); v++ {
-		TablePathMin = MAXWEIGHT
+		TablePathMin = MAX_WEIGHT
 
 		//找出shortTablePath中,未遍历的最小结点的值
 		for w := 0; w < len(graph); w++ {
-			if !isgetPath[w] && shortTablePath[w] < TablePathMin {
+			if !isgetPath[w] && shortTablePath[w].SumWeight < TablePathMin {
 				Vx = w
-				TablePathMin = shortTablePath[w]
+				TablePathMin = shortTablePath[w].SumWeight
 			}
 		}
 		isgetPath[Vx] = true
 		for j := 0; j < len(graph); j++ {
-			if !isgetPath[j] && TablePathMin+graph[Vx][j] < shortTablePath[j] {
-				shortTablePath[j] = TablePathMin + graph[Vx][j]
+			if !isgetPath[j] && TablePathMin+graph[Vx][j] < shortTablePath[j].SumWeight {
+				shortTablePath[j].SumWeight = TablePathMin + graph[Vx][j]
+				fmt.Println("vx j", Vx, j)
+				// shortTablePath[v].PassedNodes += fmt.Sprintf("%v,", j)
 			}
 		}
-
 		fmt.Println("遍历完V", v, "后:", shortTablePath)
-
 	}
 
 	//输出
 	for i := 0; i < len(shortTablePath); i++ {
 		fmt.Println("V0到V", i, "最小路径:", shortTablePath[i])
 	}
-
 }
-
-//func NewGraph() [MAXVEX][MAXVEX]int {
-//	var graph [MAXVEX][MAXVEX]int
-//	var v0 = [MAXVEX]int{0, 1, 5, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
-//	var v1 = [MAXVEX]int{1, 0, 3, 7, 5, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
-//	var v2 = [MAXVEX]int{5, 3, 0, MAXWEIGHT, 1, 7, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
-//	var v3 = [MAXVEX]int{MAXWEIGHT, 7, MAXWEIGHT, 0, 2, MAXWEIGHT, 3, MAXWEIGHT, MAXWEIGHT}
-//	var v4 = [MAXVEX]int{MAXWEIGHT, 5, 1, 2, 0, 3, 6, 9, MAXWEIGHT}
-//	var v5 = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, 7, MAXWEIGHT, 3, 0, MAXWEIGHT, 5, MAXWEIGHT}
-//	var v6 = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 3, 6, MAXWEIGHT, 0, 2, 7}
-//	var v7 = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 9, 5, 2, 0, 4}
-//	var v8 = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 7, 4, 0}
-//	graph[0] = v0
-//	graph[1] = v1
-//	graph[2] = v2
-//	graph[3] = v3
-//	graph[4] = v4
-//	graph[5] = v5
-//	graph[6] = v6
-//	graph[7] = v7
-//	graph[8] = v8
-//	return graph
-//}
 
 func NewGraph2() [MAXVEX][MAXVEX]int {
 	var graph [MAXVEX][MAXVEX]int
-	var v0a = [MAXVEX]int{0, 20, 30, 40, MAXWEIGHT, MAXWEIGHT}
-	var v1b = [MAXVEX]int{MAXWEIGHT, 0, MAXWEIGHT, 40, 15, MAXWEIGHT}
-	var v2c = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, 0, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
-	var v3d = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, MAXWEIGHT, MAXWEIGHT}
-	var v4e = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 20}
-	var v5f = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0}
-	graph[0] = v0a
-	graph[1] = v1b
-	graph[2] = v2c
-	graph[3] = v3d
-	graph[4] = v4e
-	graph[5] = v5f
-	return graph
-}
-
-func NewGraph3() [MAXVEX][MAXVEX]int {
-	var graph [MAXVEX][MAXVEX]int
-	var v0a = [MAXVEX]int{0, 1, 4, 2, MAXWEIGHT, MAXWEIGHT}
-	var v1b = [MAXVEX]int{MAXWEIGHT, 0, MAXWEIGHT, 2, 3, MAXWEIGHT}
-	var v2c = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, 0, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT}
-	var v3d = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 5, MAXWEIGHT}
-	var v4e = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0, 6}
-	var v5f = [MAXVEX]int{MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, MAXWEIGHT, 0}
+	var v0a = [MAXVEX]int{0, 20, 30, 40, MAX_WEIGHT, MAX_WEIGHT}
+	var v1b = [MAXVEX]int{MAX_WEIGHT, 0, MAX_WEIGHT, 40, 15, MAX_WEIGHT}
+	var v2c = [MAXVEX]int{MAX_WEIGHT, MAX_WEIGHT, 0, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT}
+	var v3d = [MAXVEX]int{MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, 0, MAX_WEIGHT, MAX_WEIGHT}
+	var v4e = [MAXVEX]int{MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, 0, 20}
+	var v5f = [MAXVEX]int{MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, 0}
 	graph[0] = v0a
 	graph[1] = v1b
 	graph[2] = v2c

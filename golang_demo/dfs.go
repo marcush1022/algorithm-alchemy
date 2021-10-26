@@ -10,9 +10,9 @@ import (
 var MinSum = math.MaxInt64
 
 type Node2 struct {
-	name string
+	name    string
 	follows []string
-	weight int
+	weight  int
 }
 
 func resetMinSum() {
