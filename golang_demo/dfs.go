@@ -8,7 +8,7 @@ import (
 	"math"
 )
 
-var MinSum uint = math.MaxUint32
+var MinSum uint
 
 type Node2 struct {
 	name    string
@@ -16,7 +16,7 @@ type Node2 struct {
 	weight  int
 }
 
-func resetMinSum() {
+func intiMinSum() {
 	MinSum = math.MaxUint32
 }
 
@@ -46,7 +46,7 @@ func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path
 		path = append(path, follows[i])
 		sum += weights[follows[i]]
 		dfsGetPath(follows[i], nodes, result, path, sum, weights)
-		// do clean up
+		// clean up
 		path = popBack(path)
 		sum -= weights[follows[i]]
 	}
@@ -55,11 +55,12 @@ func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path
 func GetPath3(nodes map[string][]string, weights map[string]uint) [][]string {
 	result := make([][]string, 0)
 	path := make([]string, 0)
+	intiMinSum()
 	for node, _ := range nodes {
 		path = append(path, node)
 		dfsGetPath(node, nodes, &result, path, 0, weights)
 		// reset min sum each node
-		resetMinSum()
+		intiMinSum()
 		path = make([]string, 0)
 	}
 	return result
