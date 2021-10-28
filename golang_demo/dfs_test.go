@@ -48,6 +48,12 @@ func TestGetShortPath(t *testing.T) {
 			m[v.name] = v.follows
 		}
 	}
-	res := GetPath3(m)
+
+	weights := map[string]uint{
+		"a": 10, "b": 20, "c": 30,
+		"d": 40, "e": 15, "f": 20,
+	}
+
+	res := GetPath3(m, weights)
 	fmt.Println(res)
 }
