@@ -28,13 +28,14 @@ func popBack(slice []string) []string {
 	return tmp
 }
 
-func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path []string, sum uint, weights map[string]uint) {
+func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path []string, shortPath map[string]string, sum uint, weights map[string]uint) {
 	follows, _ := nodes[node]
 	// if this node has no follow
 	if len(follows) == 0 {
 		// valid path
 		if sum < MinSum {
 			// found a solution
+			shortPath[fmt.Sprintf("%v:%v", path[0], path[len(path)-1])] = fmt.Sprint(path)
 			*result = append(*result, path)
 			MinSum = sum
 		}
@@ -44,7 +45,7 @@ func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path
 	for i := 0; i < len(follows); i++ {
 		path = append(path, follows[i])
 		sum += weights[follows[i]]
-		dfsGetPath(follows[i], nodes, result, path, sum, weights)
+		dfsGetPath(follows[i], nodes, result, path, shortPath, sum, weights)
 		// clean up
 		path = popBack(path)
 		sum -= weights[follows[i]]
@@ -54,15 +55,17 @@ func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path
 func GetPath3(nodes map[string][]string, weights map[string]uint) [][]string {
 	result := make([][]string, 0)
 	path := make([]string, 0)
+	shortPath := make(map[string]string)
 	intiMinSum()
 	for node, _ := range nodes {
 		path = append(path, node)
-		dfsGetPath(node, nodes, &result, path, 0, weights)
+		dfsGetPath(node, nodes, &result, path,  shortPath, 0, weights)
 		fmt.Printf("After %v result = %v\n", node, result)
 		// reset min sum each node
 		intiMinSum()
 		path = make([]string, 0)
 	}
-	fmt.Println("Final result:", result)
+	// fmt.Println("Final result:", result)
+	fmt.Println("Final result:", shortPath)
 	return result
 }
