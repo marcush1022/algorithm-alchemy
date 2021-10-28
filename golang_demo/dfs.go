@@ -36,7 +36,6 @@ func dfsGetPath(node string, nodes map[string][]string, result *[][]string, path
 		if sum < MinSum {
 			// found a solution
 			*result = append(*result, path)
-			fmt.Println(">>>>> result", result)
 			MinSum = sum
 		}
 		return
@@ -59,9 +58,11 @@ func GetPath3(nodes map[string][]string, weights map[string]uint) [][]string {
 	for node, _ := range nodes {
 		path = append(path, node)
 		dfsGetPath(node, nodes, &result, path, 0, weights)
+		fmt.Printf("After %v result = %v\n", node, result)
 		// reset min sum each node
 		intiMinSum()
 		path = make([]string, 0)
 	}
+	fmt.Println("Final result:", result)
 	return result
 }
