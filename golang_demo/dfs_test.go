@@ -42,12 +42,12 @@ func TestGetShortPath(t *testing.T) {
 		},
 	}
 
-	m := make(map[string]struct{})
+	m := make(map[string][]string)
 	for _, v := range nodes {
 		if len(v.follows) > 0 {
-			m[v.name] = struct{}{}
+			m[v.name] = v.follows
 		}
 	}
-	res := GetShortPath(nodes, m)
+	res := GetPath3(m)
 	fmt.Println(res)
 }
