@@ -11,24 +11,6 @@ import (
 
 var MinSum uint
 
-type Node2 struct {
-	name    string
-	follows []string
-	weight  int
-}
-
-func intiMinSum() {
-	MinSum = math.MaxUint32
-}
-
-func popBack(slice []string) []string {
-	// pop back and deep copy
-	slice = slice[:len(slice)-1]
-	tmp := make([]string, len(slice), len(slice))
-	copy(tmp, slice)
-	return tmp
-}
-
 func dfsGetPath(node string, nodes map[string][]string, path []string, shortPath map[string]string, sum uint, weights map[string]uint) {
 	follows, _ := nodes[node]
 	// if this node has no follow
@@ -52,6 +34,17 @@ func dfsGetPath(node string, nodes map[string][]string, path []string, shortPath
 	}
 }
 
+/*
+思路：
+	nodes 即 serviceInvocations
+	1. 遍历 nodes 中每个节点 n
+	2. 若 n 有后序节点 follows，继续 dfs 遍历每个 follows 节点
+	3. 若 follows 节点依然有后序节点，继续遍历
+	4. 重复此步骤 3，直至节点无 follows 节点，表明此节点为终点节点
+	5. 比较路径 sum 与全局最小 MinSum，若小，则加入结果集 shortPath
+	6. 此趟搜索结束，重置 MinSum，并返回步骤 1
+*/
+
 func GetPath3(nodes map[string][]string, weights map[string]uint) {
 	path := make([]string, 0)
 	shortPath := make(map[string]string)
@@ -69,4 +62,16 @@ func GetPath3(nodes map[string][]string, weights map[string]uint) {
 		fmt.Printf("start end = %v, shorted path = %v\n", k, v)
 	}
 	return
+}
+
+func intiMinSum() {
+	MinSum = math.MaxUint32
+}
+
+func popBack(slice []string) []string {
+	// pop back and deep copy
+	slice = slice[:len(slice)-1]
+	tmp := make([]string, len(slice), len(slice))
+	copy(tmp, slice)
+	return tmp
 }

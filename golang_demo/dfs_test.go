@@ -11,10 +11,8 @@ func TestGetShortPath(t *testing.T) {
 	nodes := map[string][]string{
 		"a": {"b", "c", "d"},
 		"b": {"d", "e"},
-		//"c": {},
 		"d": {"e"},
 		"e": {"f"},
-		//"f": {},
 	}
 
 	weights := map[string]uint{
