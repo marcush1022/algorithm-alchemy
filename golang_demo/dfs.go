@@ -11,6 +11,8 @@ import (
 
 var MinSum uint
 
+// dfsGetPath
+// node: 节点名, nodes 节点依赖图 (serviceInvocations), path 当前路径, shortPath 同起点终点的最短路径 (结果集), sum 路径和, weights 节点权重
 func dfsGetPath(node string, nodes map[string][]string, path []string, shortPath map[string]string, sum uint, weights map[string]uint) {
 	follows, _ := nodes[node]
 	// if this node has no follow
@@ -45,6 +47,7 @@ func dfsGetPath(node string, nodes map[string][]string, path []string, shortPath
 	6. 此趟搜索结束，重置 MinSum，并返回步骤 1
 */
 
+// GetPath3 nodes 节点依赖图 (serviceInvocations), weights 节点权重
 func GetPath3(nodes map[string][]string, weights map[string]uint) {
 	path := make([]string, 0)
 	shortPath := make(map[string]string)
@@ -68,8 +71,8 @@ func intiMinSum() {
 	MinSum = math.MaxUint32
 }
 
+// popBack pop back and deep copy
 func popBack(slice []string) []string {
-	// pop back and deep copy
 	slice = slice[:len(slice)-1]
 	tmp := make([]string, len(slice), len(slice))
 	copy(tmp, slice)
