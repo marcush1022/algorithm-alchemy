@@ -55,7 +55,7 @@ LRU 是由一个 map 和一个双向链表组成的数据结构。map 中 key �
 */
 
 type LRUCache struct {
-	Cap int
+	Cap  int
 	Keys map[int]*list.Element
 	List *list.List
 }
@@ -70,7 +70,7 @@ type pair struct {
 	K, V int
 }
 
-func Constructor(capacity int) LRUCache {
+func ConstructorLRU(capacity int) LRUCache {
 	return LRUCache{
 		Cap:  capacity,
 		Keys: make(map[int]*list.Element),
@@ -102,4 +102,3 @@ func (c *LRUCache) Put(key, value int) {
 		delete(c.Keys, el.Value.(pair).K)
 	}
 }
-

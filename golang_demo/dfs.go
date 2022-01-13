@@ -54,7 +54,7 @@ func GetPath3(nodes map[string][]string, weights map[string]uint) {
 	intiMinSum()
 	for node, _ := range nodes {
 		path = append(path, node)
-		dfsGetPath(node, nodes, path,  shortPath, 0, weights)
+		dfsGetPath(node, nodes, path, shortPath, 0, weights)
 		fmt.Printf("after %v, shortPath = %v\n", node, shortPath)
 		// reset min sum each node
 		intiMinSum()
