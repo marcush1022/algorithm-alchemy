@@ -1,7 +1,7 @@
 // package golang_demo
 // name LFU
 
-package golang_demo
+package lfu
 
 import "container/list"
 

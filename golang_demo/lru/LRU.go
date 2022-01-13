@@ -1,7 +1,7 @@
 // package golang_demo
 // name LRU
 
-package golang_demo
+package lru
 
 import "container/list"
 
