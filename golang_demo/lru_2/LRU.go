@@ -23,6 +23,7 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
+// Remove remove a node from list
 func (c *LRUCache) Remove(node *Node) {
 	if node == c.head {
 		c.head = node.next
@@ -35,9 +36,7 @@ func (c *LRUCache) Remove(node *Node) {
 
 	if node == c.tail {
 		c.tail = node.prev
-
 		node.prev.next = nil
-
 		node.prev = nil
 		return
 	}
@@ -45,6 +44,7 @@ func (c *LRUCache) Remove(node *Node) {
 	node.prev.next = node.next
 }
 
+// AddToFront add a node to list front
 func (c *LRUCache) AddToFront(node *Node) {
 	node.prev = nil
 	node.next = c.head
@@ -83,6 +83,7 @@ func (c *LRUCache) Put(key, val int) {
 			next: nil,
 		}
 		c.keys[key] = node
+		c.AddToFront(node)
 	}
 	if len(c.keys) > c.capacity {
 		// remove from rear
