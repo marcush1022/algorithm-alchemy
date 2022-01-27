@@ -1,7 +1,7 @@
 // package lru_con_safe
 // name lru
 
-package lru_con_safe
+package lru_shard
 
 import (
 	"container/list"
