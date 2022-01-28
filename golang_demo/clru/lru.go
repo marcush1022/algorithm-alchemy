@@ -38,7 +38,7 @@ type Pair struct {
 	cmd   command
 }
 
-func Constructor(cap int) *LRUCache {
+func New(cap int) *LRUCache {
 	c := &LRUCache{
 		cap:        cap,
 		list:       list.New(),
