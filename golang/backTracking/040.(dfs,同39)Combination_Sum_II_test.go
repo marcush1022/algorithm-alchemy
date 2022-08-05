@@ -1,7 +1,7 @@
 // package golang
-// name 039.(dfs,同77)Combination_Sum_test
+// name 040.(dfs,同39)Combination_Sum_II_test
 
-package golang
+package backTracking
 
 import (
 	"fmt"
@@ -9,20 +9,16 @@ import (
 	"testing"
 )
 
-func TestCombinationSum(t *testing.T) {
-	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{2, 3, 6, 7}), [][]int{
-		{7},
-		{2, 2, 3},
+func TestCombinationSum2(t *testing.T) {
+	assert.Equal(t, "", compareCombinations2(CombinationSum2(8, []int{10, 1, 2, 7, 6, 1, 5}), [][]int{
+		{1, 7},
+		{1, 2, 5},
+		{2, 6},
+		{1, 1, 6},
 	}))
-
-	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{7}), [][]int{
-		{7},
-	}))
-
-	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{}), [][]int{}))
 }
 
-func compareCombinations(act, exp [][]int) string {
+func compareCombinations2(act, exp [][]int) string {
 	fmt.Println("act: ", act)
 	mapA := make(map[string]struct{})
 	mapE := make(map[string]struct{})

@@ -25,7 +25,7 @@ If nums = [1,2,3], a solution is:
 从1开始递归查询2,3，对于2，继续向下搜索，搜索完后将2删除。
 */
 
-package golang
+package backTracking
 
 import (
 	"fmt"

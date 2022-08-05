@@ -1,7 +1,7 @@
 // package golang
 // name 022.(dfs)Generate_Parentheses
 
-package golang
+package backTracking
 
 import "fmt"
 

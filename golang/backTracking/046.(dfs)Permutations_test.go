@@ -1,7 +1,7 @@
 // package golang
-// name 078.(dfs)Subsets_test
+// name 046.(dfs)Permutations_test
 
-package golang
+package backTracking
 
 import (
 	"fmt"
@@ -9,44 +9,18 @@ import (
 	"testing"
 )
 
-func TestGetSubsets(t *testing.T) {
-	assert.Equal(t, "", compareSubsets(GetSubsets([]int{1, 2, 3}),
-		[][]int{
-			{3},
-			{1},
-			{2},
-			{1, 2, 3},
-			{1, 3},
-			{2, 3},
-			{1, 2},
-			{},
-		},
-	))
-
-	assert.Equal(t, "", compareSubsets(GetSubsets([]int{1, 2}),
-		[][]int{
-			{1},
-			{2},
-			{1, 2},
-			{},
-		},
-	))
-
-	assert.Equal(t, "", compareSubsets(GetSubsets([]int{3}),
-		[][]int{
-			{3},
-			{},
-		},
-	))
-
-	assert.Equal(t, "", compareSubsets(GetSubsets([]int{}),
-		[][]int{
-			{},
-		},
-	))
+func TestPermutations(t *testing.T) {
+	assert.Equal(t, "", comparePermutations(Permutations([]int{1, 2, 3}), [][]int{
+		{1, 2, 3},
+		{1, 3, 2},
+		{2, 1, 3},
+		{2, 3, 1},
+		{3, 1, 2},
+		{3, 2, 1},
+	}))
 }
 
-func compareSubsets(act, exp [][]int) string {
+func comparePermutations(act, exp [][]int) string {
 	fmt.Println("act: ", act)
 	mapA := make(map[string]struct{})
 	mapE := make(map[string]struct{})

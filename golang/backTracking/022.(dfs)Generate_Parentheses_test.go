@@ -1,7 +1,7 @@
 // package golang
-// name 046.(dfs)Permutations_test
+// name 022.(dfs)Generate_Parentheses_test
 
-package golang
+package backTracking
 
 import (
 	"fmt"
@@ -9,18 +9,35 @@ import (
 	"testing"
 )
 
-func TestPermutations(t *testing.T) {
-	assert.Equal(t, "", comparePermutations(Permutations([]int{1, 2, 3}), [][]int{
-		{1, 2, 3},
-		{1, 3, 2},
-		{2, 1, 3},
-		{2, 3, 1},
-		{3, 1, 2},
-		{3, 2, 1},
+func TestGenerateParentheses(t *testing.T) {
+	assert.Equal(t, "", compareParentheses(GenerateParentheses(3), []string{
+		"((()))",
+		"(()())",
+		"(())()",
+		"()(())",
+		"()()()",
+	}))
+
+	assert.Equal(t, "", compareParentheses(GenerateParentheses(1), []string{
+		"()",
 	}))
 }
 
-func comparePermutations(act, exp [][]int) string {
+func TestGenerateParentheses2(t *testing.T) {
+	assert.Equal(t, "", compareParentheses(GenerateParentheses2(3), []string{
+		"((()))",
+		"(()())",
+		"(())()",
+		"()(())",
+		"()()()",
+	}))
+
+	assert.Equal(t, "", compareParentheses(GenerateParentheses2(1), []string{
+		"()",
+	}))
+}
+
+func compareParentheses(act, exp []string) string {
 	fmt.Println("act: ", act)
 	mapA := make(map[string]struct{})
 	mapE := make(map[string]struct{})

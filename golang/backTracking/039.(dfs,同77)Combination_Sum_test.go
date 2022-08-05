@@ -1,7 +1,7 @@
 // package golang
-// name 022.(dfs)Generate_Parentheses_test
+// name 039.(dfs,同77)Combination_Sum_test
 
-package golang
+package backTracking
 
 import (
 	"fmt"
@@ -9,35 +9,20 @@ import (
 	"testing"
 )
 
-func TestGenerateParentheses(t *testing.T) {
-	assert.Equal(t, "", compareParentheses(GenerateParentheses(3), []string{
-		"((()))",
-		"(()())",
-		"(())()",
-		"()(())",
-		"()()()",
+func TestCombinationSum(t *testing.T) {
+	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{2, 3, 6, 7}), [][]int{
+		{7},
+		{2, 2, 3},
 	}))
 
-	assert.Equal(t, "", compareParentheses(GenerateParentheses(1), []string{
-		"()",
+	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{7}), [][]int{
+		{7},
 	}))
+
+	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{}), [][]int{}))
 }
 
-func TestGenerateParentheses2(t *testing.T) {
-	assert.Equal(t, "", compareParentheses(GenerateParentheses2(3), []string{
-		"((()))",
-		"(()())",
-		"(())()",
-		"()(())",
-		"()()()",
-	}))
-
-	assert.Equal(t, "", compareParentheses(GenerateParentheses2(1), []string{
-		"()",
-	}))
-}
-
-func compareParentheses(act, exp []string) string {
+func compareCombinations(act, exp [][]int) string {
 	fmt.Println("act: ", act)
 	mapA := make(map[string]struct{})
 	mapE := make(map[string]struct{})

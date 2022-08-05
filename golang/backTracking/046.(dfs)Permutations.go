@@ -1,7 +1,7 @@
 // package golang
 // name 046.(dfs)Permutations
 
-package golang
+package backTracking
 
 import "fmt"
 
