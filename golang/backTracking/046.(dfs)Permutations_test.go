@@ -20,6 +20,17 @@ func TestPermutations(t *testing.T) {
 	}))
 }
 
+func Test_permute(t *testing.T) {
+	assert.Equal(t, "", comparePermutations(permute([]int{1, 2, 3}), [][]int{
+		{1, 2, 3},
+		{1, 3, 2},
+		{2, 1, 3},
+		{2, 3, 1},
+		{3, 1, 2},
+		{3, 2, 1},
+	}))
+}
+
 func comparePermutations(act, exp [][]int) string {
 	fmt.Println("act: ", act)
 	mapA := make(map[string]struct{})
