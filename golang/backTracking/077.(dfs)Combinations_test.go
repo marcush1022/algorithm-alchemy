@@ -1,5 +1,5 @@
-// package golang
-// name 078.(dfs)Subsets_test
+// package backTracking
+// name 077.(dfs)Combinations_test
 
 package backTracking
 
@@ -9,44 +9,22 @@ import (
 	"testing"
 )
 
-func Test_subsets(t *testing.T) {
-	assert.Equal(t, "", compareSubsets(subsets([]int{1, 2, 3}),
-		[][]int{
-			{3},
-			{1},
-			{2},
-			{1, 2, 3},
-			{1, 3},
-			{2, 3},
-			{1, 2},
-			{},
-		},
-	))
+func Test_combine(t *testing.T) {
+	assert.Equal(t, "", compareCombine(combine(4, 2), [][]int{
+		{2, 4},
+		{3, 4},
+		{2, 3},
+		{1, 2},
+		{1, 3},
+		{1, 4},
+	}))
 
-	assert.Equal(t, "", compareSubsets(subsets([]int{1, 2}),
-		[][]int{
-			{1},
-			{2},
-			{1, 2},
-			{},
-		},
-	))
-
-	assert.Equal(t, "", compareSubsets(subsets([]int{3}),
-		[][]int{
-			{3},
-			{},
-		},
-	))
-
-	assert.Equal(t, "", compareSubsets(subsets([]int{}),
-		[][]int{
-			{},
-		},
-	))
+	assert.Equal(t, "", compareCombine(combine(1, 1), [][]int{
+		{1},
+	}))
 }
 
-func compareSubsets(act, exp [][]int) string {
+func compareCombine(act, exp [][]int) string {
 	fmt.Println("act: ", act)
 	mapA := make(map[string]struct{})
 	mapE := make(map[string]struct{})

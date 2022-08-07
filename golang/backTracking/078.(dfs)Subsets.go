@@ -2,23 +2,34 @@
 // name 078.(dfs)Subsets
 
 /*
-Given a set of distinct integers, nums, return all possible subsets.
+Given an integer array nums of unique elements, return all possible subsets (the power set).
 
-Note: The solution set must not contain duplicate subsets.
+The solution set must not contain duplicate subsets. Return the solution in any order.
 
-For example,
-If nums = [1,2,3], a solution is:
 
-[
-  [3],
-  [1],
-  [2],
-  [1,2,3],
-  [1,3],
-  [2,3],
-  [1,2],
-  []
-]
+
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+Example 2:
+
+Input: nums = [0]
+Output: [[],[0]]
+
+
+Constraints:
+
+1 <= nums.length <= 10
+-10 <= nums[i] <= 10
+All the numbers of nums are unique.
+
+https://labuladong.github.io/algo/1/9/
+
+注意这棵树的特性：
+如果把根节点作为第 0 层，将每个节点和根节点之间树枝上的元素作为该节点的值，那么第 n 层的所有节点就是大小为 n 的所有子集。
+
+那么再进一步，如果想计算所有子集，那只要遍历这棵多叉树，把所有节点的值收集起来不就行了？
 
 使用一个变量来记录路径，每遍历到一个元素即表示找到一条路径，将其加入子集中。
 例如数组[1,2,3]
@@ -32,7 +43,7 @@ import (
 	"sort"
 )
 
-func popBack(slice []int) []int {
+func popBack78(slice []int) []int {
 	// pop back and deep copy
 	slice = slice[:len(slice)-1]
 	tmp := make([]int, len(slice), len(slice))
@@ -40,24 +51,30 @@ func popBack(slice []int) []int {
 	return tmp
 }
 
-func dfs(result *[][]int, path []int, numbers []int, index int) {
-	if index == len(numbers) {
+func backtrack78(result *[][]int, track []int, numbers []int, startIndex int) {
+	// leaf node
+	if startIndex == len(numbers) {
 		return
 	}
-	for i := index; i < len(numbers); i++ {
-		path = append(path, numbers[i])
-		*result = append(*result, path)
+
+	// nums.length is tree's depth
+	for i := startIndex; i < len(numbers); i++ {
+		track = append(track, numbers[i])
+		// each node of tree is subset
+		*result = append(*result, track)
 		fmt.Println(">>>>> result", result)
-		dfs(result, path, numbers, i+1)
-		path = popBack(path)
+		// start+1
+		backtrack78(result, track, numbers, i+1)
+		// reset last node
+		track = popBack78(track)
 	}
 }
 
-func GetSubsets(numbers []int) [][]int {
+func subsets(numbers []int) [][]int {
 	results := &[][]int{}
 	path := make([]int, 0)
 	*results = append(*results, path)
 	sort.Ints(numbers)
-	dfs(results, path, numbers, 0)
+	backtrack78(results, path, numbers, 0)
 	return *results
 }
