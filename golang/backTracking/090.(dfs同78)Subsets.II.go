@@ -22,6 +22,10 @@ Constraints:
 
 1 <= nums.length <= 10
 -10 <= nums[i] <= 10
+
+https://labuladong.github.io/algo/1/9/
+如果一个节点有多条值相同的树枝相邻，则只遍历第一条，剩下的都剪掉，不要去遍历
+需要先进行排序，让相同的元素靠在一起，如果发现 nums[i] == nums[i-1]，则跳过
 */
 
 package backTracking

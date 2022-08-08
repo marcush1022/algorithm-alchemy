@@ -10,7 +10,7 @@ import (
 )
 
 func TestCombinationSum2(t *testing.T) {
-	assert.Equal(t, "", compareCombinations2(CombinationSum2(8, []int{10, 1, 2, 7, 6, 1, 5}), [][]int{
+	assert.Equal(t, "", compareCombinations2(combinationSum2([]int{10, 1, 2, 7, 6, 1, 5}, 8), [][]int{
 		{1, 7},
 		{1, 2, 5},
 		{2, 6},
