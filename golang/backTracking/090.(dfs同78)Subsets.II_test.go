@@ -10,7 +10,7 @@ import (
 )
 
 func TestGetSubsets2(t *testing.T) {
-	assert.Equal(t, "", compareSubsets2(GetSubsets2([]int{2, 2}),
+	assert.Equal(t, "", compareSubsets2(subsetsWithDup([]int{2, 2}),
 		[][]int{
 			{2},
 			{2, 2},
@@ -18,7 +18,7 @@ func TestGetSubsets2(t *testing.T) {
 		},
 	))
 
-	assert.Equal(t, "", compareSubsets2(GetSubsets2([]int{1, 2, 2}),
+	assert.Equal(t, "", compareSubsets2(subsetsWithDup([]int{1, 2, 2}),
 		[][]int{
 			{2},
 			{1},
@@ -29,7 +29,7 @@ func TestGetSubsets2(t *testing.T) {
 		},
 	))
 
-	assert.Equal(t, "", compareSubsets2(GetSubsets2([]int{1, 2, 3}),
+	assert.Equal(t, "", compareSubsets2(subsetsWithDup([]int{1, 2, 3}),
 		[][]int{
 			{3},
 			{1},
@@ -42,7 +42,7 @@ func TestGetSubsets2(t *testing.T) {
 		},
 	))
 
-	assert.Equal(t, "", compareSubsets2(GetSubsets2([]int{1, 2}),
+	assert.Equal(t, "", compareSubsets2(subsetsWithDup([]int{1, 2}),
 		[][]int{
 			{1},
 			{2},
@@ -51,14 +51,14 @@ func TestGetSubsets2(t *testing.T) {
 		},
 	))
 
-	assert.Equal(t, "", compareSubsets2(GetSubsets2([]int{3}),
+	assert.Equal(t, "", compareSubsets2(subsetsWithDup([]int{3}),
 		[][]int{
 			{3},
 			{},
 		},
 	))
 
-	assert.Equal(t, "", compareSubsets2(GetSubsets2([]int{}),
+	assert.Equal(t, "", compareSubsets2(subsetsWithDup([]int{}),
 		[][]int{
 			{},
 		},
