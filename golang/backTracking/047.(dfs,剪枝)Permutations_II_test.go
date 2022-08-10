@@ -10,28 +10,28 @@ import (
 )
 
 func TestPermutations2(t *testing.T) {
-	assert.Equal(t, "", comparePermutations2(Permutations2([]int{1, 1, 2}), [][]int{
+	assert.Equal(t, "", comparePermutations2(permuteUnique([]int{1, 1, 2}), [][]int{
 		{1, 1, 2},
 		{1, 2, 1},
 		{2, 1, 1},
 	}))
 
-	assert.Equal(t, "", comparePermutations2(Permutations2([]int{1, 1}), [][]int{
+	assert.Equal(t, "", comparePermutations2(permuteUnique([]int{1, 1}), [][]int{
 		{1, 1},
 	}))
 
-	assert.Equal(t, "", comparePermutations2(Permutations2([]int{1}), [][]int{
+	assert.Equal(t, "", comparePermutations2(permuteUnique([]int{1}), [][]int{
 		{1},
 	}))
 
-	assert.Equal(t, "", comparePermutations2(Permutations2([]int{0, 1, 0, 0, 9}), [][]int{
+	assert.Equal(t, "", comparePermutations2(permuteUnique([]int{0, 1, 0, 0, 9}), [][]int{
 		{0, 0, 0, 1, 9}, {0, 0, 0, 9, 1}, {0, 0, 1, 0, 9}, {0, 0, 1, 9, 0}, {0, 0, 9, 0, 1},
 		{0, 0, 9, 1, 0}, {0, 1, 0, 0, 9}, {0, 1, 0, 9, 0}, {0, 1, 9, 0, 0}, {0, 9, 0, 0, 1},
 		{0, 9, 0, 1, 0}, {0, 9, 1, 0, 0}, {1, 0, 0, 0, 9}, {1, 0, 0, 9, 0}, {1, 0, 9, 0, 0},
 		{1, 9, 0, 0, 0}, {9, 0, 0, 0, 1}, {9, 0, 0, 1, 0}, {9, 0, 1, 0, 0}, {9, 1, 0, 0, 0},
 	}))
 
-	assert.Equal(t, "", comparePermutations2(Permutations2([]int{0, 0, 0, 9}), [][]int{
+	assert.Equal(t, "", comparePermutations2(permuteUnique([]int{0, 0, 0, 9}), [][]int{
 		{0, 0, 0, 9},
 		{0, 0, 9, 0},
 		{0, 9, 0, 0},
