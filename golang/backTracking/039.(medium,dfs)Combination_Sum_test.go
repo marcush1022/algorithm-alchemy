@@ -10,16 +10,16 @@ import (
 )
 
 func TestCombinationSum(t *testing.T) {
-	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{2, 3, 6, 7}), [][]int{
+	assert.Equal(t, "", compareCombinations(combinationSum([]int{2, 3, 6, 7}, 7), [][]int{
 		{7},
 		{2, 2, 3},
 	}))
 
-	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{7}), [][]int{
+	assert.Equal(t, "", compareCombinations(combinationSum([]int{7}, 7), [][]int{
 		{7},
 	}))
 
-	assert.Equal(t, "", compareCombinations(CombinationSum(7, []int{}), [][]int{}))
+	assert.Equal(t, "", compareCombinations(combinationSum([]int{}, 7), [][]int{}))
 }
 
 func compareCombinations(act, exp [][]int) string {
