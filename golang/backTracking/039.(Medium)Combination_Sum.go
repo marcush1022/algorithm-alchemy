@@ -116,7 +116,7 @@ func backtrack39(result *[][]int, track, candidates []int, trackSum, target, sta
 	}
 
 	for i := startIndex; i < len(candidates); i++ {
-		trackSum+= candidates[i]
+		trackSum += candidates[i]
 		track = append(track, candidates[i])
 		backtrack39(result, track, candidates, trackSum, target, i)
 		// reset last node
@@ -126,7 +126,7 @@ func backtrack39(result *[][]int, track, candidates []int, trackSum, target, sta
 }
 
 func combinationSum(candidates []int, target int) [][]int {
-    results := &[][]int{}
+	results := &[][]int{}
 	track := make([]int, 0)
 	sort.Ints(candidates)
 	backtrack39(results, track, candidates, 0, target, 0)
