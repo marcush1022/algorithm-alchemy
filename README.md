@@ -3,7 +3,6 @@
 ```shell
 # index
 .
-├── README.md
 ├── cpp
 │   ├── sort
 │   │   ├── 147.(链表排序)Insertion Sort List.cpp
@@ -212,78 +211,36 @@
 │       ├── 581.(Array,TwoPointers)Shortest Unsorted Continuous Subarray
 │       ├── 594.(Hash)Longest Harmonious Subsequence
 │       └── 594.(TwoPointers)Longest Harmonious Subsequence
-├── golang
-│   ├── 005.(中心扩展法)Longest_Palindromic_Substring.go
-│   ├── 005.(中心扩展法)Longest_Palindromic_Substring_test.go
-│   ├── 007.(大数)Reverse_Integer.go
-│   ├── 007.(大数)Reverse_Integer_test.go
-│   ├── 008.(字符串处理)String_to_Integer(atoi).go
-│   ├── 008.(字符串处理)String_to_Integer(atoi)_test.go
-│   ├── 009.(大数)Palindrome_Number.go
-│   ├── 009.(大数)Palindrome_Number_test.go
-│   ├── 014.(字符串处理,easy)Longest_Common_Prefix.go
-│   ├── 014.(字符串处理,easy)Longest_Common_Prefix_test.go
-│   ├── 015.(双指针)3_Sum.go
-│   ├── 017.(二分)Binary_Seach.go
-│   ├── 112.(dfs)Path_Sum.go
-│   ├── 112.(dfs)Path_Sum_test.go
-│   ├── 113.(dfs)Path_Sum_II.go
-│   ├── 151.(字符串处理,medium)Reverse_Words_in_a_String.go
-│   ├── 151.(字符串处理,medium)Reverse_Words_in_a_String_test.go
-│   ├── 204.(哈希)Count_Primes.go
-│   ├── 204.(哈希)Count_Primes_test.go
-│   ├── 491.(dfs)Increasing_Subsequences.go
-│   ├── 491.(dfs)Increasing_Subsequences_test.go
-│   ├── 494.(dfs)Target_Sum.go
-│   ├── 494.(dfs)Target_Sum_test.go
-│   ├── backTracking
-│   │   ├── 022.(Medium)Generate_Parentheses.go
-│   │   ├── 022.(Medium)Generate_Parentheses_test.go
-│   │   ├── 039.(Medium)Combination_Sum.go
-│   │   ├── 039.(Medium)Combination_Sum_test.go
-│   │   ├── 040.(Medium)Combination_Sum_II.go
-│   │   ├── 040.(Medium)Combination_Sum_II_test.go
-│   │   ├── 046.(Medium)Permutations.go
-│   │   ├── 046.(Medium)Permutations_test.go
-│   │   ├── 047.(Medium,剪枝)Permutations_II.go
-│   │   ├── 047.(Medium,剪枝)Permutations_II_test.go
-│   │   ├── 077.(Medium)Combinations.go
-│   │   ├── 077.(Medium)Combinations_test.go
-│   │   ├── 078.(Medium)Subsets.go
-│   │   ├── 078.(Medium)Subsets_test.go
-│   │   ├── 090.(Medium)Subsets.II.go
-│   │   ├── 090.(Medium)Subsets.II_test.go
-│   │   └── index.md
-│   ├── go.mod
-│   ├── go.sum
-│   └── twoPointers
-│       ├── 167.(Medium)Two_Sum_II_Input_array_is_sorted.go
-│       └── 26.(Easy)Remove_Duplicates_from_Sorted_Array.go
-└── golang_demo
-    ├── clru
-    │   ├── bucket.go
-    │   ├── lru.go
-    │   └── lru_test.go
-    ├── concurrency.go
-    ├── concurrency_test.go
-    ├── dfs.go
-    ├── dfs_test.go
-    ├── get_path.go
-    ├── get_path_2.go
-    ├── get_path_test.go
-    ├── go.mod
-    ├── go.sum
-    ├── interface
-    │   ├── interface.go
-    │   └── interface_test.go
-    ├── lfu
-    │   └── LFU.go
-    ├── lru_1
-    │   └── LRU.go
-    ├── lru_2
-    │   └── LRU.go
-    ├── lru_shard
-    │   └── lru.go
-    ├── tracker.go
-    └── tracker_test.go
+└── golang
+    ├── 005.(中心扩展法)Longest_Palindromic_Substring.go
+    ├── 007.(大数)Reverse_Integer.go
+    ├── 008.(字符串处理)String_to_Integer(atoi).go
+    ├── 009.(大数)Palindrome_Number.go
+    ├── 014.(字符串处理,easy)Longest_Common_Prefix.go
+    ├── 015.(双指针)3_Sum.go
+    ├── 017.(二分)Binary_Seach.go
+    ├── 112.(dfs)Path_Sum.go
+    ├── 113.(dfs)Path_Sum_II.go
+    ├── 151.(字符串处理,medium)Reverse_Words_in_a_String.go
+    ├── 204.(哈希)Count_Primes.go
+    ├── 491.(dfs)Increasing_Subsequences.go
+    ├── 494.(dfs)Target_Sum.go
+    ├── backTracking
+    │   ├── 022.(Medium)Generate_Parentheses.go
+    │   ├── 039.(Medium)Combination_Sum.go
+    │   ├── 040.(Medium)Combination_Sum_II.go
+    │   ├── 046.(Medium)Permutations.go
+    │   ├── 047.(Medium,剪枝)Permutations_II.go
+    │   ├── 077.(Medium)Combinations.go
+    │   ├── 078.(Medium)Subsets.go
+    │   └── 090.(Medium)Subsets.II.go
+    └── twoPointers
+        ├── 026.(Easy)Remove_Duplicates_from_Sorted_Array.go
+        ├── 027.(Easy)Remove_Element.go
+        └── 167.(Medium)Two_Sum_II_Input_array_is_sorted.go
+```
+
+```shell
+# generate this index
+tree -I golang_demo -I go.mod -I go.sum -I *.md -I *_test.go -I index.md
 ```
