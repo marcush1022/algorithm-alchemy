@@ -41,3 +41,31 @@ The tests are generated such that there is exactly one solution.
 */
 
 package twoPointers
+
+import "fmt"
+
+func twoSum2(nums []int, target int) (indexes [2]int) {
+	if len(nums) == 0 {
+		return
+	}
+
+	leftIndex := 0
+	rightIndex := len(nums) - 1
+	for leftIndex < rightIndex {
+		sum := nums[leftIndex] + nums[rightIndex]
+		if sum == target {
+			indexes[0] = leftIndex + 1
+			indexes[1] = rightIndex + 1
+			return indexes
+		} else if sum < target {
+			// too small, move left pointer right
+			leftIndex++
+		} else {
+			// too big, move right pointer left
+			rightIndex--
+		}
+	}
+	// no solution found
+	fmt.Println("not found")
+	return indexes
+}
