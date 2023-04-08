@@ -3,6 +3,8 @@
 
 package twoPointers
 
+import "fmt"
+
 /**
 Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once.
 The relative order of the elements should be kept the same.
@@ -59,7 +61,7 @@ nums is sorted in non-decreasing order.
 
 我们让慢指针 slow 走在后面，快指针 fast 走在前面探路，找到一个不重复的元素就赋值给 slow 并让 slow 前进一步。
 
-这样，就保证了 nums[0..slow] 都是无重复的元素，当 fast 指针遍历完整个数组 nums 后，nums[0..slow] 就是整个数组去重之后的结果。
+这样，就保证了 nums[0]..nums[slow-1] 都是无重复的元素，当 fast 指针遍历完整个数组 nums 后，nums[0]..nums[slow-1] 就是整个数组去重之后的结果。
 */
 
 func removeDuplicates(nums []int) int {
@@ -74,5 +76,6 @@ func removeDuplicates(nums []int) int {
 			slowIndex++
 		}
 	}
+	fmt.Println(">>>>>> slowIndex", slowIndex)
 	return slowIndex
 }
